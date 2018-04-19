@@ -1,0 +1,54 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+	
+	<button onclick="btnScrollUp()">Scroll up</button>
+	<button onclick="btnScrollDown()">Scroll down</button>
+	<button onclick="btnScrollLeft()">Scroll left</button>
+	<button onclick="btnScrollRight()">Scroll right</button>
+
+	<script>
+		var crt = new CRT('crt', 80, 25);
+		
+		for (var i = 0; i < 154; i++) 
+			{
+				crt.autoscroll = false;									// I want fill entire screen w/out scroll up
+				crt.setColor(Math.floor(Math.random() * 15) + 1);		// a random foreground color...
+				crt.write ('Hello ');
+				crt.setColor(Math.floor(Math.random() * 15) + 1);		// a random foreground color...
+				crt.write ('World! ');
+				crt.autoscroll = true;									// restore autoscroll
+			}
+			
+		btnScrollUp = function()
+			{
+				crt.scroll ('up');										// scroll up screen content
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnScrollDown = function()
+			{
+				crt.scroll ('down');										// scroll down screen content
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnScrollLeft = function()
+			{
+				crt.scroll ('left');										// scroll screen content to left
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnScrollRight = function()
+			{
+				crt.scroll ('right');									// scroll screen content to right
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+	</script>
+</body>
+</html>

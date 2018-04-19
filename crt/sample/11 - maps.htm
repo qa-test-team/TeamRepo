@@ -1,0 +1,113 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+	
+	<button onclick="btnGetMap()">Get map</button>
+	<button onclick="btnClrScr()">Clear screen</button>
+	<button onclick="btnPutMap()">Put map</button>
+	<button id="btnAnim" onclick="btnAnimate()">Animate</button>
+
+	<label for="chkTreshold">Treshold:</label>
+	<input type="checkbox" id="chkTreshold"/>
+
+	<button onclick="btnSlow()">Slow</button>
+	<button onclick="btnNormal()">Normal</button>
+	<button onclick="btnManiac()">Maniac</button>
+
+	<script>
+		var crt = new CRT('crt', 80, 25);
+		
+		for (var i = 0; i < 154; i++) 
+			{
+				crt.autoscroll = false;									// I want fill entire screen w/out scroll up
+				crt.setColor(Math.floor(Math.random() * 15) + 1);		// a random foreground color...
+				crt.write ('Hello ');
+				crt.setColor(Math.floor(Math.random() * 15) + 1);		// a random foreground color...
+				crt.write ('World! ');
+				crt.autoscroll = true;									// restore autoscroll
+			}
+			
+		var m = null;														// CRTMap object
+		var x = 30;															// start x
+		var y = 7;															// start y
+		var left2right = true;												// animation direction
+		var top2bottom = true;												// animation direction
+		var speed = 250;													// animation speed
+			
+		btnGetMap = function()
+			{
+				m = crt.getMap(30, 7, 20, 10);							// load a map
+				alert('map acquired');
+			}
+
+		btnPutMap = function()
+			{
+				if (!m)
+					{
+						alert('no map set');
+						return;
+					}
+				crt.putMap(x, y, m);										// put a map on screen
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnClrScr = function()
+			{
+				if (!m)
+					{
+						alert('no map set');
+						return;
+					}
+				crt.clrScr();											// clear screen
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnSlow = function()
+			{
+				speed = 250;												// set speed (animation frame delay)
+			}
+
+		btnNormal = function()
+			{
+				speed = 100;												// set speed (animation frame delay)
+			}
+
+		btnManiac = function()
+			{
+				speed = 10;													// set speed (animation frame delay)
+			}
+			
+		fncAnimate = function()
+			{
+				if (m) 
+					{
+						if (!$o('chkTreshold').checked) crt.clrScr();	// if treshold is checked, I have not clear screen
+						crt.putMap(x, y, m);								// put a map on screen
+						crt.refresh();									// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+					}
+				if (left2right) x++; else x--;								// direction and position update
+				if (top2bottom) y++; else y--;								// direction and position update
+				if (x < 1 || x > 59) left2right = !left2right;				// check screen limits to invert direction (bouncing)
+				if (y < 1 || y > 14) top2bottom = !top2bottom;				// check screen limits to invert direction (bouncing)
+				setTimeout(fncAnimate, speed);								// go to next frame
+			}
+			
+		btnAnimate = function()
+			{
+				if (!m)
+					{
+						alert('no map set');
+						return;
+					}
+				$o('btnAnim').disabled = true;
+				setTimeout(fncAnimate, speed);
+			}
+	</script>
+</body>
+</html>

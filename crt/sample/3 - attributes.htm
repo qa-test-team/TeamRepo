@@ -1,0 +1,92 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+	
+	<label for="ddlFG">Foreground:</label>
+	<select id="ddlFG" onchange="setFG()">
+		<option value="0">Black</option>
+		<option value="1">Navy</option>
+		<option value="2">Green</option>
+		<option value="3">Cyan</option>
+		<option value="4">Red</option>
+		<option value="5">Purple</option>
+		<option value="6">Brown</option>
+		<option value="7" selected>Silver</option>
+		<option value="8">Grey</option>
+		<option value="9">Blue</option>
+		<option value="10">Lime</option>
+		<option value="11">Aqua</option>
+		<option value="12">Pink</option>
+		<option value="13">Fuchsia</option>
+		<option value="14">Yellow</option>
+		<option value="15">White</option>
+	</select>
+	<label for="ddlBG"> on Background:</label>
+	<select id="ddlBG" onchange="setBG()">
+		<option value="0" selected>Black</option>
+		<option value="1">Navy</option>
+		<option value="2">Green</option>
+		<option value="3">Cyan</option>
+		<option value="4">Red</option>
+		<option value="5">Purple</option>
+		<option value="6">Brown</option>
+		<option value="7">Silver</option>
+		<option value="8">Grey</option>
+		<option value="9">Blue</option>
+		<option value="10">Lime</option>
+		<option value="11">Aqua</option>
+		<option value="12">Pink</option>
+		<option value="13">Fuchsia</option>
+		<option value="14">Yellow</option>
+		<option value="15">White</option>
+	</select>
+	<label for="chkUnderline">Underline:</label>
+	<input type="checkbox" id="chkUnderline" onclick="underline()"/>
+	<label for="chkBlink">Blink:</label>
+	<input type="checkbox" id="chkBlink" onclick="blink()"/>
+	<label for="txtLink">Link to:</label>
+	<input type="text" id="txtLink" onchange="linkTo()"/>
+	<button onclick="btnHelloWorld()">Write Hello World!</button>
+
+	<script>
+		var crt = new CRT('crt', 80, 25);
+		
+		var setFG = function()
+			{
+				crt.setColor($o('ddlFG').value);					// set default foreground color selected from drop down list. $o is tool function for retrivering HTML object in javascript
+			}
+
+		var setBG = function()
+			{
+				crt.setBackgroundColor($o('ddlBG').value);		// set default background color selected from drop down list. $o is tool function for retrivering HTML object in javascript
+			}
+			
+		var underline = function()
+			{
+				crt.setUnderline($o('chkUnderline').checked);	// set/reset default underline state
+			}
+
+		var blink = function()
+			{
+				crt.setBlink($o('chkBlink').checked);			// set/reset default blink state
+			}
+
+		var linkTo = function()
+			{
+				crt.setLink($o('txtLink').value);				// set link href. if text is '' then href and link state are resetted
+			}
+			
+		var btnHelloWorld = function()
+			{
+				crt.write ('Hello World! ');						// write 'Hello World! ' string with default attributes at cursor position and move cursor
+				crt.refresh();									// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+	</script>
+</body>
+</html>

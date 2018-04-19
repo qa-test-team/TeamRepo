@@ -1,0 +1,316 @@
+/*****************************************************************************/
+/*                                                                           */
+/* ASCII Codes - Copyright (c) by Frederic Cambus 2009-2013                  */
+/* http://www.ascii-codes.com                                                */
+/*                                                                           */
+/* Created:      2009/05/11                                                  */
+/* Last Updated: 2011/06/01                                                  */
+/*                                                                           */
+/*****************************************************************************/
+
+html, body { height: 100% }
+body { background: #d0d0d0 url(images/background.png) repeat-x top left; color: #000; font: 12px Verdana, Arial, sans-serif; margin: 0 auto; text-align: center }
+img { border: 0px }
+h1 { font-size: 24px; font-weight: bold; margin-left: 5px }
+h2 { font-weight: bold; font-size: 14px; margin: 30px 0 10px 5px }
+span { font-weight: bold; text-decoration: underline }
+
+/*****************************************************************************/
+
+table { border: 1px solid #ababab; border-collapse: collapse; width: 100% }
+tr { background:url(images/gradient.png) repeat-x }
+tr:first-child { background: #80d0fe; font-weight: bold }
+td { border-top: 1px solid #ababab; text-align: center; width: 5% }
+td:nth-child(4) { border-right: 1px solid #ababab; width: 35% }
+td:nth-child(8) { width: 35% }
+
+/*****************************************************************************/
+
+#container { background: url(images/container.png) repeat-y top center; height : 100%; height: auto !important; margin: 0 auto; min-height: 100%; padding: 0 5px; position: relative; width: 980px }
+#header { background: url("images/header.png") no-repeat top left; height: 140px }
+#header strong { color: #fff; display: block; font-weight: bold; padding-top: 115px; text-shadow: 0 1px 0 #555 }
+#menu { border-bottom: 1px solid #989898; border-top: 1px solid #76b6dc; height: 32px; margin: 0; padding: 0 }
+#menu li { display: block; float: left }
+#menu a { background: #333; color: #ccc; display: inline-block; font-weight: bold; padding: 9px 0; text-align: center; text-decoration: none; text-shadow: 0 1px 0 #000; width: 70px }
+#menu a#selected { color: #fff }
+#menu a:hover { background: #2580a2; color: #fff }
+#content { background: #fff; padding: 0 20px 50px 20px; text-align: justify }
+#footer { overflow: hidden; position: absolute; bottom: 0; border-top: 1px solid #d8effa; background: url(images/footer.png) no-repeat top left; color: #fff; font-weight: bold; text-shadow: 0 1px 0 #555; width: 980px; height: 30px }
+#copyright { float:left; margin-left: 20px; padding-top: 7px }
+#copyright a { color: #ff0 }
+#standards { float:right; margin-right: 20px; padding-top: 4px }
+
+/*****************************************************************************/
+
+#warning { background: #ff334b; border: 3px solid #e10f23; color: #fff; font-weight: bold }
+#warning img { display: block; float: left; margin: 10px }
+#warning p { margin: 10px 10px 10px 100px }
+
+/*****************************************************************************/
+
+.character { width: 9px; height: 16px; margin: 0 auto }
+
+/*** [Control characters] ****************************************************/
+
+#nul { background:url(charsets/cp437.png) 0 0 }
+#soh { background:url(charsets/cp437.png) -9px 0 }
+#stx { background:url(charsets/cp437.png) -18px 0 }
+#etx { background:url(charsets/cp437.png) -27px 0 }
+#eot { background:url(charsets/cp437.png) -36px 0 }
+#enq { background:url(charsets/cp437.png) -45px 0 }
+#ack { background:url(charsets/cp437.png) -54px 0 }
+#bel { background:url(charsets/cp437.png) -63px 0 }
+#bs { background:url(charsets/cp437.png) -72px 0 }
+#ht { background:url(charsets/cp437.png) -81px 0 }
+#lf { background:url(charsets/cp437.png) -90px 0 }
+#vt { background:url(charsets/cp437.png) -99px 0 }
+#ff { background:url(charsets/cp437.png) -108px 0 }
+#cr { background:url(charsets/cp437.png) -117px 0 }
+#so { background:url(charsets/cp437.png) -126px 0 }
+#si { background:url(charsets/cp437.png) -135px 0 }
+#dle { background:url(charsets/cp437.png) -144px 0 }
+#dc1 { background:url(charsets/cp437.png) -153px 0 }
+#dc2 { background:url(charsets/cp437.png) -162px 0 }
+#dc3 { background:url(charsets/cp437.png) -171px 0 }
+#dc4 { background:url(charsets/cp437.png) -180px 0 }
+#nak { background:url(charsets/cp437.png) -189px 0 }
+#syn { background:url(charsets/cp437.png) -198px 0 }
+#etb { background:url(charsets/cp437.png) -207px 0 }
+#can { background:url(charsets/cp437.png) -216px 0 }
+#em { background:url(charsets/cp437.png) -225px 0 }
+#sub { background:url(charsets/cp437.png) -234px 0 }
+#esc { background:url(charsets/cp437.png) -243px 0 }
+#fs { background:url(charsets/cp437.png) -252px 0 }
+#gs { background:url(charsets/cp437.png) -261px 0 }
+#rs { background:url(charsets/cp437.png) -270px 0 }
+#us { background:url(charsets/cp437.png) -279px 0 }
+
+/*** [ Standard character set ] **********************************************/
+
+#cp437-032 { background:url(charsets/cp437.png) -288px 0 }
+#cp437-033 { background:url(charsets/cp437.png) -297px 0 }
+#cp437-034 { background:url(charsets/cp437.png) -306px 0 }
+#cp437-035 { background:url(charsets/cp437.png) -315px 0 }
+#cp437-036 { background:url(charsets/cp437.png) -324px 0 }
+#cp437-037 { background:url(charsets/cp437.png) -333px 0 }
+#cp437-038 { background:url(charsets/cp437.png) -342px 0 }
+#cp437-039 { background:url(charsets/cp437.png) -351px 0 }
+#cp437-040 { background:url(charsets/cp437.png) -360px 0 }
+#cp437-041 { background:url(charsets/cp437.png) -369px 0 }
+#cp437-042 { background:url(charsets/cp437.png) -378px 0 }
+#cp437-043 { background:url(charsets/cp437.png) -387px 0 }
+#cp437-044 { background:url(charsets/cp437.png) -396px 0 }
+#cp437-045 { background:url(charsets/cp437.png) -405px 0 }
+#cp437-046 { background:url(charsets/cp437.png) -414px 0 }
+#cp437-047 { background:url(charsets/cp437.png) -423px 0 }
+#cp437-048 { background:url(charsets/cp437.png) -432px 0 }
+#cp437-049 { background:url(charsets/cp437.png) -441px 0 }
+#cp437-050 { background:url(charsets/cp437.png) -450px 0 }
+#cp437-051 { background:url(charsets/cp437.png) -459px 0 }
+#cp437-052 { background:url(charsets/cp437.png) -468px 0 }
+#cp437-053 { background:url(charsets/cp437.png) -477px 0 }
+#cp437-054 { background:url(charsets/cp437.png) -486px 0 }
+#cp437-055 { background:url(charsets/cp437.png) -495px 0 }
+#cp437-056 { background:url(charsets/cp437.png) -504px 0 }
+#cp437-057 { background:url(charsets/cp437.png) -513px 0 }
+#cp437-058 { background:url(charsets/cp437.png) -522px 0 }
+#cp437-059 { background:url(charsets/cp437.png) -531px 0 }
+#cp437-060 { background:url(charsets/cp437.png) -540px 0 }
+#cp437-061 { background:url(charsets/cp437.png) -549px 0 }
+#cp437-062 { background:url(charsets/cp437.png) -558px 0 }
+#cp437-063 { background:url(charsets/cp437.png) -567px 0 }
+#cp437-064 { background:url(charsets/cp437.png) -576px 0 }
+#cp437-065 { background:url(charsets/cp437.png) -585px 0 }
+#cp437-066 { background:url(charsets/cp437.png) -594px 0 }
+#cp437-067 { background:url(charsets/cp437.png) -603px 0 }
+#cp437-068 { background:url(charsets/cp437.png) -612px 0 }
+#cp437-069 { background:url(charsets/cp437.png) -621px 0 }
+#cp437-070 { background:url(charsets/cp437.png) -630px 0 }
+#cp437-071 { background:url(charsets/cp437.png) -639px 0 }
+#cp437-072 { background:url(charsets/cp437.png) -648px 0 }
+#cp437-073 { background:url(charsets/cp437.png) -657px 0 }
+#cp437-074 { background:url(charsets/cp437.png) -666px 0 }
+#cp437-075 { background:url(charsets/cp437.png) -675px 0 }
+#cp437-076 { background:url(charsets/cp437.png) -684px 0 }
+#cp437-077 { background:url(charsets/cp437.png) -693px 0 }
+#cp437-078 { background:url(charsets/cp437.png) -702px 0 }
+#cp437-079 { background:url(charsets/cp437.png) -711px 0 }
+#cp437-080 { background:url(charsets/cp437.png) -720px 0 }
+#cp437-081 { background:url(charsets/cp437.png) -729px 0 }
+#cp437-082 { background:url(charsets/cp437.png) -738px 0 }
+#cp437-083 { background:url(charsets/cp437.png) -747px 0 }
+#cp437-084 { background:url(charsets/cp437.png) -756px 0 }
+#cp437-085 { background:url(charsets/cp437.png) -765px 0 }
+#cp437-086 { background:url(charsets/cp437.png) -774px 0 }
+#cp437-087 { background:url(charsets/cp437.png) -783px 0 }
+#cp437-088 { background:url(charsets/cp437.png) -792px 0 }
+#cp437-089 { background:url(charsets/cp437.png) -801px 0 }
+#cp437-090 { background:url(charsets/cp437.png) -810px 0 }
+#cp437-091 { background:url(charsets/cp437.png) -819px 0 }
+#cp437-092 { background:url(charsets/cp437.png) -828px 0 }
+#cp437-093 { background:url(charsets/cp437.png) -837px 0 }
+#cp437-094 { background:url(charsets/cp437.png) -846px 0 }
+#cp437-095 { background:url(charsets/cp437.png) -855px 0 }
+#cp437-096 { background:url(charsets/cp437.png) -864px 0 }
+#cp437-097 { background:url(charsets/cp437.png) -873px 0 }
+#cp437-098 { background:url(charsets/cp437.png) -882px 0 }
+#cp437-099 { background:url(charsets/cp437.png) -891px 0 }
+#cp437-100 { background:url(charsets/cp437.png) -900px 0 }
+#cp437-101 { background:url(charsets/cp437.png) -909px 0 }
+#cp437-102 { background:url(charsets/cp437.png) -918px 0 }
+#cp437-103 { background:url(charsets/cp437.png) -927px 0 }
+#cp437-104 { background:url(charsets/cp437.png) -936px 0 }
+#cp437-105 { background:url(charsets/cp437.png) -945px 0 }
+#cp437-106 { background:url(charsets/cp437.png) -954px 0 }
+#cp437-107 { background:url(charsets/cp437.png) -963px 0 }
+#cp437-108 { background:url(charsets/cp437.png) -972px 0 }
+#cp437-109 { background:url(charsets/cp437.png) -981px 0 }
+#cp437-110 { background:url(charsets/cp437.png) -990px 0 }
+#cp437-111 { background:url(charsets/cp437.png) -999px 0 }
+#cp437-112 { background:url(charsets/cp437.png) -1008px 0 }
+#cp437-113 { background:url(charsets/cp437.png) -1017px 0 }
+#cp437-114 { background:url(charsets/cp437.png) -1026px 0 }
+#cp437-115 { background:url(charsets/cp437.png) -1035px 0 }
+#cp437-116 { background:url(charsets/cp437.png) -1044px 0 }
+#cp437-117 { background:url(charsets/cp437.png) -1053px 0 }
+#cp437-118 { background:url(charsets/cp437.png) -1062px 0 }
+#cp437-119 { background:url(charsets/cp437.png) -1071px 0 }
+#cp437-120 { background:url(charsets/cp437.png) -1080px 0 }
+#cp437-121 { background:url(charsets/cp437.png) -1089px 0 }
+#cp437-122 { background:url(charsets/cp437.png) -1098px 0 }
+#cp437-123 { background:url(charsets/cp437.png) -1107px 0 }
+#cp437-124 { background:url(charsets/cp437.png) -1116px 0 }
+#cp437-125 { background:url(charsets/cp437.png) -1125px 0 }
+#cp437-126 { background:url(charsets/cp437.png) -1134px 0 }
+#cp437-127 { background:url(charsets/cp437.png) -1143px 0 }
+
+/*** [ Extended character set ] **********************************************/
+
+#cp437-128 { background:url(charsets/cp437.png) -1152px 0 }
+#cp437-129 { background:url(charsets/cp437.png) -1161px 0 }
+#cp437-130 { background:url(charsets/cp437.png) -1170px 0 }
+#cp437-131 { background:url(charsets/cp437.png) -1179px 0 }
+#cp437-132 { background:url(charsets/cp437.png) -1188px 0 }
+#cp437-133 { background:url(charsets/cp437.png) -1197px 0 }
+#cp437-134 { background:url(charsets/cp437.png) -1206px 0 }
+#cp437-135 { background:url(charsets/cp437.png) -1215px 0 }
+#cp437-136 { background:url(charsets/cp437.png) -1224px 0 }
+#cp437-137 { background:url(charsets/cp437.png) -1233px 0 }
+#cp437-138 { background:url(charsets/cp437.png) -1242px 0 }
+#cp437-139 { background:url(charsets/cp437.png) -1251px 0 }
+#cp437-140 { background:url(charsets/cp437.png) -1260px 0 }
+#cp437-141 { background:url(charsets/cp437.png) -1269px 0 }
+#cp437-142 { background:url(charsets/cp437.png) -1278px 0 }
+#cp437-143 { background:url(charsets/cp437.png) -1287px 0 }
+#cp437-144 { background:url(charsets/cp437.png) -1296px 0 }
+#cp437-145 { background:url(charsets/cp437.png) -1305px 0 }
+#cp437-146 { background:url(charsets/cp437.png) -1314px 0 }
+#cp437-147 { background:url(charsets/cp437.png) -1323px 0 }
+#cp437-148 { background:url(charsets/cp437.png) -1332px 0 }
+#cp437-149 { background:url(charsets/cp437.png) -1341px 0 }
+#cp437-150 { background:url(charsets/cp437.png) -1350px 0 }
+#cp437-151 { background:url(charsets/cp437.png) -1359px 0 }
+#cp437-152 { background:url(charsets/cp437.png) -1368px 0 }
+#cp437-153 { background:url(charsets/cp437.png) -1377px 0 }
+#cp437-154 { background:url(charsets/cp437.png) -1386px 0 }
+#cp437-155 { background:url(charsets/cp437.png) -1395px 0 }
+#cp437-156 { background:url(charsets/cp437.png) -1404px 0 }
+#cp437-157 { background:url(charsets/cp437.png) -1413px 0 }
+#cp437-158 { background:url(charsets/cp437.png) -1422px 0 }
+#cp437-159 { background:url(charsets/cp437.png) -1431px 0 }
+#cp437-160 { background:url(charsets/cp437.png) -1440px 0 }
+#cp437-161 { background:url(charsets/cp437.png) -1449px 0 }
+#cp437-162 { background:url(charsets/cp437.png) -1458px 0 }
+#cp437-163 { background:url(charsets/cp437.png) -1467px 0 }
+#cp437-164 { background:url(charsets/cp437.png) -1476px 0 }
+#cp437-165 { background:url(charsets/cp437.png) -1485px 0 }
+#cp437-166 { background:url(charsets/cp437.png) -1494px 0 }
+#cp437-167 { background:url(charsets/cp437.png) -1503px 0 }
+#cp437-168 { background:url(charsets/cp437.png) -1512px 0 }
+#cp437-169 { background:url(charsets/cp437.png) -1521px 0 }
+#cp437-170 { background:url(charsets/cp437.png) -1530px 0 }
+#cp437-171 { background:url(charsets/cp437.png) -1539px 0 }
+#cp437-172 { background:url(charsets/cp437.png) -1548px 0 }
+#cp437-173 { background:url(charsets/cp437.png) -1557px 0 }
+#cp437-174 { background:url(charsets/cp437.png) -1566px 0 }
+#cp437-175 { background:url(charsets/cp437.png) -1575px 0 }
+#cp437-176 { background:url(charsets/cp437.png) -1584px 0 }
+#cp437-177 { background:url(charsets/cp437.png) -1593px 0 }
+#cp437-178 { background:url(charsets/cp437.png) -1602px 0 }
+#cp437-179 { background:url(charsets/cp437.png) -1611px 0 }
+#cp437-180 { background:url(charsets/cp437.png) -1620px 0 }
+#cp437-181 { background:url(charsets/cp437.png) -1629px 0 }
+#cp437-182 { background:url(charsets/cp437.png) -1638px 0 }
+#cp437-183 { background:url(charsets/cp437.png) -1647px 0 }
+#cp437-184 { background:url(charsets/cp437.png) -1656px 0 }
+#cp437-185 { background:url(charsets/cp437.png) -1665px 0 }
+#cp437-186 { background:url(charsets/cp437.png) -1674px 0 }
+#cp437-187 { background:url(charsets/cp437.png) -1683px 0 }
+#cp437-188 { background:url(charsets/cp437.png) -1692px 0 }
+#cp437-189 { background:url(charsets/cp437.png) -1701px 0 }
+#cp437-190 { background:url(charsets/cp437.png) -1710px 0 }
+#cp437-191 { background:url(charsets/cp437.png) -1719px 0 }
+#cp437-192 { background:url(charsets/cp437.png) -1728px 0 }
+#cp437-193 { background:url(charsets/cp437.png) -1737px 0 }
+#cp437-194 { background:url(charsets/cp437.png) -1746px 0 }
+#cp437-195 { background:url(charsets/cp437.png) -1755px 0 }
+#cp437-196 { background:url(charsets/cp437.png) -1764px 0 }
+#cp437-197 { background:url(charsets/cp437.png) -1773px 0 }
+#cp437-198 { background:url(charsets/cp437.png) -1782px 0 }
+#cp437-199 { background:url(charsets/cp437.png) -1791px 0 }
+#cp437-200 { background:url(charsets/cp437.png) -1800px 0 }
+#cp437-201 { background:url(charsets/cp437.png) -1809px 0 }
+#cp437-202 { background:url(charsets/cp437.png) -1818px 0 }
+#cp437-203 { background:url(charsets/cp437.png) -1827px 0 }
+#cp437-204 { background:url(charsets/cp437.png) -1836px 0 }
+#cp437-205 { background:url(charsets/cp437.png) -1845px 0 }
+#cp437-206 { background:url(charsets/cp437.png) -1854px 0 }
+#cp437-207 { background:url(charsets/cp437.png) -1863px 0 }
+#cp437-208 { background:url(charsets/cp437.png) -1872px 0 }
+#cp437-209 { background:url(charsets/cp437.png) -1881px 0 }
+#cp437-210 { background:url(charsets/cp437.png) -1890px 0 }
+#cp437-211 { background:url(charsets/cp437.png) -1899px 0 }
+#cp437-212 { background:url(charsets/cp437.png) -1908px 0 }
+#cp437-213 { background:url(charsets/cp437.png) -1917px 0 }
+#cp437-214 { background:url(charsets/cp437.png) -1926px 0 }
+#cp437-215 { background:url(charsets/cp437.png) -1935px 0 }
+#cp437-216 { background:url(charsets/cp437.png) -1944px 0 }
+#cp437-217 { background:url(charsets/cp437.png) -1953px 0 }
+#cp437-218 { background:url(charsets/cp437.png) -1962px 0 }
+#cp437-219 { background:url(charsets/cp437.png) -1971px 0 }
+#cp437-220 { background:url(charsets/cp437.png) -1980px 0 }
+#cp437-221 { background:url(charsets/cp437.png) -1989px 0 }
+#cp437-222 { background:url(charsets/cp437.png) -1998px 0 }
+#cp437-223 { background:url(charsets/cp437.png) -2007px 0 }
+#cp437-224 { background:url(charsets/cp437.png) -2016px 0 }
+#cp437-225 { background:url(charsets/cp437.png) -2025px 0 }
+#cp437-226 { background:url(charsets/cp437.png) -2034px 0 }
+#cp437-227 { background:url(charsets/cp437.png) -2043px 0 }
+#cp437-228 { background:url(charsets/cp437.png) -2052px 0 }
+#cp437-229 { background:url(charsets/cp437.png) -2061px 0 }
+#cp437-230 { background:url(charsets/cp437.png) -2070px 0 }
+#cp437-231 { background:url(charsets/cp437.png) -2079px 0 }
+#cp437-232 { background:url(charsets/cp437.png) -2088px 0 }
+#cp437-233 { background:url(charsets/cp437.png) -2097px 0 }
+#cp437-234 { background:url(charsets/cp437.png) -2106px 0 }
+#cp437-235 { background:url(charsets/cp437.png) -2115px 0 }
+#cp437-236 { background:url(charsets/cp437.png) -2124px 0 }
+#cp437-237 { background:url(charsets/cp437.png) -2133px 0 }
+#cp437-238 { background:url(charsets/cp437.png) -2142px 0 }
+#cp437-239 { background:url(charsets/cp437.png) -2151px 0 }
+#cp437-240 { background:url(charsets/cp437.png) -2160px 0 }
+#cp437-241 { background:url(charsets/cp437.png) -2169px 0 }
+#cp437-242 { background:url(charsets/cp437.png) -2178px 0 }
+#cp437-243 { background:url(charsets/cp437.png) -2187px 0 }
+#cp437-244 { background:url(charsets/cp437.png) -2196px 0 }
+#cp437-245 { background:url(charsets/cp437.png) -2205px 0 }
+#cp437-246 { background:url(charsets/cp437.png) -2214px 0 }
+#cp437-247 { background:url(charsets/cp437.png) -2223px 0 }
+#cp437-248 { background:url(charsets/cp437.png) -2232px 0 }
+#cp437-249 { background:url(charsets/cp437.png) -2241px 0 }
+#cp437-250 { background:url(charsets/cp437.png) -2250px 0 }
+#cp437-251 { background:url(charsets/cp437.png) -2259px 0 }
+#cp437-252 { background:url(charsets/cp437.png) -2268px 0 }
+#cp437-253 { background:url(charsets/cp437.png) -2277px 0 }
+#cp437-254 { background:url(charsets/cp437.png) -2286px 0 }
+#cp437-255 { background:url(charsets/cp437.png) -2295px 0 }

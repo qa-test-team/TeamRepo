@@ -1,0 +1,78 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+
+	<button onclick="btnRect1()">Create an empty rectangle</button>
+	<button onclick="btnRect2()">Create a filled rectangle</button>
+	<button onclick="btnFrame1()">set double frame</button>
+	<button onclick="btnFrame2()">set single frame</button>
+	<button onclick="btnFrame3()">set mixed frame</button>
+	<button onclick="btnFrame4()">set old style frame</button>
+	<button onclick="btnFrame5()">set custom frame</button>
+
+	<button onclick="btnHelloWorld()">Write Hello World!</button>
+
+	<script>
+		var crt = new CRT('crt', 80, 25);
+
+		btnRect1 = function()
+			{
+				crt.setBackgroundColor(crt.NAVY);		// I want rectangle have dark blue background color
+				crt.setColor(crt.WHITE);				// I want rectangle have white foreground color
+				crt.rect(5, 5, 70, 15, '');				// create an empty rect with default attributes
+				crt.refresh();							// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnRect2 = function()
+			{
+				crt.setBackgroundColor(crt.GREEN);	// I want rectangle have dark blue background color
+				crt.setColor(crt.YELLOW);				// I want rectangle have white foreground color
+				crt.rect(5, 5, 70, 15, '@');				// create an empty rect with default attributes
+				crt.refresh();							// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+			
+		btnFrame1 = function()
+			{
+				crt.frame(5, 5, 70, 15, crt.DOUBLE_FRAME);	// create a border with current attributes and specified character set
+				crt.refresh();									// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnFrame2 = function()
+			{
+				crt.frame(5, 5, 70, 15, crt.SINGLE_FRAME, [crt.SILVER, crt.SILVER, crt.GRAY, crt.GRAY]);	// create a border with custom foreground colors and specified character set
+				crt.refresh();									// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnFrame3 = function()
+			{
+				crt.frame(5, 5, 70, 15, crt.MIXED_FRAME);		// create a border with current attributes and specified character set
+				crt.refresh();									// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnFrame4 = function()
+			{
+				crt.frame(5, 5, 70, 15, crt.SIMPLE_FRAME);	// create a border with current attributes and specified character set
+				crt.refresh();									// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+			
+		btnFrame5 = function()
+			{
+				crt.frame(5, 5, 70, 15, ['!', '=', ']', '_', '@', '#', '*', '?']);	// create a border with current attributes and custom character set
+				crt.refresh();									// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnHelloWorld = function()
+			{
+				// unlike window, rectangle simply draws rectangle on screen.
+				crt.write ('Hello World! ');		// write 'Hello World! ' string at cursor position and move cursor
+				crt.refresh();					// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+	</script>
+</body>
+</html>

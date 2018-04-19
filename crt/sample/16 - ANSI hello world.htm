@@ -1,0 +1,70 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<script src="js/ansi.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+	
+	<button onclick="btnClrScr()">Clear screen</button>
+	<button onclick="btnHelloWorld()">Write Hello World!</button>
+	<button onclick="btnHelloWorldBuffer()">Write Hello World! with buffer</button>
+	<button onclick="btnHelloWorldComplex()">Write Hello World! with buffer (more complex)</button>
+	<button onclick="btnHelloWorldEscape()">Write Hello World! (escape string)</button>
+
+	<script>
+		var crt = new CRT('crt', 80, 25);
+		var ansi = new ANSI(crt);
+
+		btnClrScr = function()
+			{
+				crt.setBackgroundColor(crt.BLACK);					// restore default screen attributes
+				crt.setColor(crt.SILVER);
+				crt.setBlink(false);
+				crt.setUnderline(false);
+				crt.setLink('');
+				crt.clrScr();											// clear entire screen and move cursor to screen top left corner
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+		
+		btnHelloWorld = function()
+			{
+				ansi.write ('Hello World! ');		// write 'Hello World! ' string at cursor position and move cursor
+				crt.refresh();					// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnHelloWorldBuffer = function()
+			{
+				ansi.bufferBegin();										// creates new text buffer
+				ansi.bufferAppend(ansi.BAW_TEXT, 'Hello World! ');		// append 'Hello World! ' string to buffer
+				
+				ansi.write (ansi.bufferToString());		// write buffer content as string at cursor position and move cursor
+				crt.refresh();						// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnHelloWorldComplex = function()
+			{
+				ansi.bufferBegin();																	// creates new text buffer
+				ansi.bufferAppend(ansi.BAW_MOVE_CURSOR_REL, ansi.MOVE_DOWN, 2);						// move cursor position down by 2 rows
+				ansi.bufferAppend(ansi.BAW_SET_COLOR, ansi.TA_BOLD, ansi.FG_RED, ansi.BG_BLUE);		// change colors
+				ansi.bufferAppend(ansi.BAW_TEXT, 'Hello ');											// append 'Hello ' string to buffer
+				ansi.bufferAppend(ansi.BAW_SET_COLOR, ansi.TA_BOLD, ansi.FG_YELLOW, ansi.BG_GREEN); // change colors again
+				ansi.bufferAppend(ansi.BAW_TEXT, 'World! ');										// append 'World! ' string to buffer
+				
+				ansi.write (ansi.bufferToString());		// write buffer content as string at cursor position and move cursor
+				crt.refresh();						// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnHelloWorldEscape = function()
+			{
+				var str = ansi.ESC + '[0;30;41mHello ' + ansi.ESC + '[0;31;42mworld! ';		// escape sequence mixed with text
+				ansi.write (str);															// write string at cursor position and move cursor
+				crt.refresh();															// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+			
+	</script>
+</body>
+</html>

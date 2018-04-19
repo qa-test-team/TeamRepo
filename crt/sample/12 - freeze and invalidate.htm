@@ -1,0 +1,68 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+
+	<button onclick="btnClrScr()">clear screen</button>
+	<button onclick="btnNoFreeze()">no freeze</button>
+	<button onclick="btnFreeze()">freeze</button>
+
+	<script>
+		var crt = new CRT('crt', 80, 25);
+
+		var i = 0;
+		var invalidate = false;
+
+		btnClrScr = function()
+			{
+				crt.setBackgroundColor(crt.BLACK);
+				crt.setColor(crt.SILVER);
+				crt.clrScr();
+			}
+			
+		animate = function()
+			{
+				var c = ['@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+				var fg = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+				var bg = [7, 6, 5, 4, 3, 2, 1, 0, 7, 6, 5, 4, 3, 2, 1, 0, 7, 6, 5, 4, 3, 2, 1, 0, 7, 6, 5, 4, 3, 2, 1, 0];
+				
+				var s = '';
+				crt.setBackgroundColor(bg[i]);			// I want rectangle have dark blue background color
+				crt.setColor(fg[i]);						// I want rectangle have white foreground color
+				crt.rect(0, 0, 80-i, 25-i, c[i]);		// create an empty rect with default attributes
+				//crt.refresh();							// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+
+				i = i + 1;
+				if (i > 25)
+					{
+						i = 0;
+						if (invalidate) crt.invalidate();	// invalidate reset the freeze state and draws all modify immediately
+						return;
+					}
+				
+				setTimeout(animate, 50);
+			}
+
+		btnNoFreeze = function()
+			{
+				crt.clrScr();
+				invalidate = false;
+				animate();									// I use this trick to simulate massive operations
+			}
+			
+		btnFreeze = function()
+			{
+				crt.clrScr();
+				crt.freeze = true;						// set freeze = true to stop video buffer auto retrace
+				invalidate = true;
+				animate();									// I use this trick to simulate massive operations
+			}
+			
+	</script>
+</body>
+</html>

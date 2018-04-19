@@ -1,0 +1,26 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<script src="js/ansi.js"></script>
+	<script src="js/GRAB0114.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+	
+	<button onclick="btnFromFile()">Load screen from js</button>
+
+	<script>
+		var crt = new CRT('crt', 80, 25);
+		var ansi = new ANSI(crt);
+		
+		btnFromFile = function()
+			{
+				ansi.stringArtWindow(0, 0, 80, 25, GRAB0114_ANS, true, true);				// draws grab0114.js file content (grab0114.ans converted in javascript string with ans2js.py)
+				crt.refresh();															// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+	</script>
+</body>
+</html>

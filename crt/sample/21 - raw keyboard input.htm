@@ -1,0 +1,112 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<script src="js/keyb.js"></script>
+	<script src="js/keyb_it.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+	
+	<label for="filter">filter special chars</label><input type="checkbox" id="filter" />
+
+	<script>
+		var keyPressed = function(kattr)
+			{			
+				if (kattr.special == K_ENTER)		// enter: move to begin of next row
+					crt.write('\r\n');
+				else if (kattr.special == K_BS)		// backspace: move back and delete char at position
+					{
+						crt.moveCursor('back');
+						crt.write(' ');
+						crt.moveCursor('back');
+					}
+				else if (kattr.special == K_UP)			// backspace: move cursor up
+						crt.moveCursor('n');
+				else if (kattr.special == K_DOWN)		// backspace: move cursor down
+						crt.moveCursor('s');
+				else if (kattr.special == K_LEFT)		// backspace: move cursor left
+						crt.moveCursor('w');
+				else if (kattr.special == K_RIGHT)		// backspace: move cursor right
+						crt.moveCursor('e');
+				else if (kattr.c == '0' && kattr.ctrl) 	// set fg color to black
+						crt.setColor(crt.BLACK);
+				else if (kattr.c == '1' && kattr.ctrl) 	// set fg color to navy
+						crt.setColor(crt.NAVY);
+				else if (kattr.c == '2' && kattr.ctrl) 	// set fg color to green
+						crt.setColor(crt.GREEN);
+				else if (kattr.c == '3' && kattr.ctrl) 	// set fg color to cyan
+						crt.setColor(crt.CYAN);
+				else if (kattr.c == '4' && kattr.ctrl) 	// set fg color to red
+						crt.setColor(crt.RED);
+				else if (kattr.c == '5' && kattr.ctrl) 	// set fg color to purple
+						crt.setColor(crt.PURPLE);
+				else if (kattr.c == '6' && kattr.ctrl) 	// set fg color to brown
+						crt.setColor(crt.BROWN);
+				else if (kattr.c == '7' && kattr.ctrl) 	// set fg color to silver
+						crt.setColor(crt.SILVER);
+				else if (kattr.c == '8' && kattr.ctrl) 	// set fg color to grey
+						crt.setColor(crt.GREY);
+				else if (kattr.c == '9' && kattr.ctrl) 	// set fg color to blue
+						crt.setColor(crt.BLUE);
+				else if (kattr.c == 'a' && kattr.ctrl) 	// set fg color to lime
+						crt.setColor(crt.LIME);
+				else if (kattr.c == 'b' && kattr.ctrl) 	// set fg color to aqua
+						crt.setColor(crt.AQUA);
+				else if (kattr.c == 'c' && kattr.ctrl) 	// set fg color to pink
+						crt.setColor(crt.PINK);
+				else if (kattr.c == 'd' && kattr.ctrl) 	// set fg color to fuchsia
+						crt.setColor(crt.FUCHSIA);
+				else if (kattr.c == 'e' && kattr.ctrl) 	// set fg color to yellow
+						crt.setColor(crt.YELLOW);
+				else if (kattr.c == 'f' && kattr.ctrl) 	// set fg color to white
+						crt.setColor(crt.WHITE);
+				else if (kattr.c == '0' && kattr.alt) 	// set bg color to black
+						crt.setBackgroundColor(crt.BLACK);
+				else if (kattr.c == '1' && kattr.alt) 	// set bg color to navy
+						crt.setBackgroundColor(crt.NAVY);
+				else if (kattr.c == '2' && kattr.alt) 	// set bg color to green
+						crt.setBackgroundColor(crt.GREEN);
+				else if (kattr.c == '3' && kattr.alt) 	// set bg color to cyan
+						crt.setBackgroundColor(crt.CYAN);
+				else if (kattr.c == '4' && kattr.alt) 	// set bg color to red
+						crt.setBackgroundColor(crt.RED);
+				else if (kattr.c == '5' && kattr.alt) 	// set bg color to purple
+						crt.setBackgroundColor(crt.PURPLE);
+				else if (kattr.c == '6' && kattr.alt) 	// set bg color to brown
+						crt.setBackgroundColor(crt.BROWN);
+				else if (kattr.c == '7' && kattr.alt) 	// set bg color to silver
+						crt.setBackgroundColor(crt.SILVER);
+				else if (kattr.c == '8' && kattr.alt) 	// set bg color to grey
+						crt.setBackgroundColor(crt.GREY);
+				else if (kattr.c == '9' && kattr.alt) 	// set bg color to blue
+						crt.setBackgroundColor(crt.BLUE);
+				else if (kattr.c == 'a' && kattr.alt) 	// set bg color to lime
+						crt.setBackgroundColor(crt.LIME);
+				else if (kattr.c == 'b' && kattr.alt) 	// set bg color to aqua
+						crt.setBackgroundColor(crt.AQUA);
+				else if (kattr.c == 'c' && kattr.alt) 	// set bg color to pink
+						crt.setBackgroundColor(crt.PINK);
+				else if (kattr.c == 'd' && kattr.alt) 	// set bg color to fuchsia
+						crt.setBackgroundColor(crt.FUCHSIA);
+				else if (kattr.c == 'e' && kattr.alt) 	// set bg color to yellow
+						crt.setBackgroundColor(crt.YELLOW);
+				else if (kattr.c == 'f' && kattr.alt) 	// set bg color to white
+						crt.setBackgroundColor(crt.WHITE);
+				else 
+					if (kattr.printable()) 
+						crt.write (kattr.c);			// write unfiltered pressed key string at cursor position and move cursor
+					else
+						if ($o('filter').checked)
+							crt.write (kattr.special);			// write unfiltered pressed key string at cursor position and move cursor
+				crt.refresh();					// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+				return false;
+			}
+
+		var crt = new CRT('crt', 80, 25);
+		var keyb = new Keyb(keyboard_layout, keyPressed);		
+	</script>
+</body>
+</html>

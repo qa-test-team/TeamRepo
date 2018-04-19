@@ -1,0 +1,67 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+	
+	<button onclick="writechar(0)">NUL</button>
+	<button onclick="writechar(1)">SOH</button>
+	<button onclick="writechar(2)">STX</button>
+	<button onclick="writechar(3)">ETX</button>
+	<button onclick="writechar(4)">EOT</button>
+	<button onclick="writechar(5)">ENQ</button>
+	<button onclick="writechar(6)">ACK</button>
+	<button onclick="writechar(7)">BEL</button>
+	<button onclick="writechar(8)">BS</button>
+	<button onclick="writechar(9)">HT</button>
+	<button onclick="writechar(10)">LF</button>
+	<button onclick="writechar(11)">VT</button>
+	<button onclick="writechar(12)">FF</button>
+	<button onclick="writechar(13)">CR</button>
+	<button onclick="writechar(14)">SO</button>
+	<button onclick="writechar(15)">SI</button>
+	<button onclick="writechar(16)">DLE</button>
+	<button onclick="writechar(17)">DC1</button>
+	<button onclick="writechar(18)">DC2</button>
+	<button onclick="writechar(19)">DC3</button>
+	<button onclick="writechar(20)">DC4</button>
+	<button onclick="writechar(21)">NAK</button>
+	<button onclick="writechar(22)">SYN</button>
+	<button onclick="writechar(23)">ETB</button>
+	<button onclick="writechar(24)">CAN</button>
+	<button onclick="writechar(25)">EM</button>
+	<button onclick="writechar(26)">SUB</button>
+	<button onclick="writechar(27)">ESC</button>
+	<button onclick="writechar(28)">FS</button>
+	<button onclick="writechar(29)">GS</button>
+	<button onclick="writechar(30)">RS</button>
+	<button onclick="writechar(31)">US</button>
+	<button onclick="writechar(127)">DEL</button>
+
+	<label for="chkBinary">Draw as binary</label>
+	<input type="checkbox" checked id="chkBinary"/>
+	
+	<button onclick="ascii()">ASCII table</button>
+	
+	<script>
+		var crt = new CRT('crt', 80, 25);
+		
+		writechar = function(c)
+			{
+				crt.write ($c(c), $o('chkBinary').checked);				// $c is tool function to convert int in corrispondent char
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+			
+		ascii = function()
+			{
+				crt.ASCIITable(10, 5);									// draw 16x16 table with all ASCII characters
+				crt.refresh();											// write immediately
+			}
+			
+	</script>
+</body>
+</html>

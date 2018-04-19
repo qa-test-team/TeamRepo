@@ -1,0 +1,23 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+	
+	<button onclick="btnHelloWorld()">Write Hello World!</button>
+
+	<script>
+		var crt = new CRT('crt', 80, 25);
+		
+		btnHelloWorld = function()
+			{
+				crt.write ('Hello World! ');		// write 'Hello World! ' string at cursor position and move cursor
+				crt.refresh();					// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+	</script>
+</body>
+</html>

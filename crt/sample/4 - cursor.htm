@@ -1,0 +1,74 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+	
+	<label for="chkVisible">Cursor visible</label>	
+	<input type="checkbox" checked id="chkVisible" onclick="visible(this)"/>
+	
+	<button onclick="btnUp()">Move cursor up</button>
+	<button onclick="btnDown()">Move cursor down</button>
+	<button onclick="btnLeft()">Move cursor left</button>
+	<button onclick="btnRight()">Move cursor right</button>
+	<button onclick="btnAuto()">Move cursor auto</button>
+
+	<script>
+		var crt = new CRT('crt', 80, 25);
+
+		log = function()
+			{
+				var x = crt.getX();				// save current cursor x coordinate
+				var y = crt.getY();				// save current cursor y coordinate
+				crt.gotoXY(0, 0);				// move cursor to screen top left corner
+				crt.write('Cursor position (x = ' + x + ', y = ' + y + ') - Cursor visible: ' + (crt.cursorshowstate ? 'yes' : 'no') + '     ');		// log states
+				crt.gotoXY(x, y);				// restore cursor position
+				crt.refresh();					// write immediately
+			}
+
+		log();
+			
+		visible = function(o)
+			{
+				o.checked ? crt.showCursor() : crt.hideCursor();		// show or hide cursor based on checkbox value
+				log();
+			}
+		
+		btnUp = function()
+			{
+				crt.moveCursor('n');				// move cursor to north/up
+				log();
+			}
+
+		btnDown = function()
+			{
+				crt.moveCursor('s');				// move cursor to south/down
+				log();
+			}
+
+		btnLeft = function()
+			{
+				crt.moveCursor('w');				// move cursor to west/left
+				log();
+			}
+
+		btnRight = function()
+			{
+				crt.moveCursor('e');				// move cursor to east/right
+				log();
+			}
+
+		btnAuto = function()
+			{
+				crt.moveCursor('auto');				// move cursor auto
+				log();
+			}
+			
+		// and so on... check manual page for other moveCursor options.
+		</script>
+</body>
+</html>

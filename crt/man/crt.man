@@ -1,0 +1,341 @@
+/**
+ * crt.js
+ * 
+ * Provides DOM and Javascript old style text mode in browser
+ * 	(Rows are DIV element in main DIV container. 
+ *	In any row, SPAN elements contains omogeneous (same attributes) characters.
+ *	The render routine destroy and re-create every row, only if row changed.
+ *	Character attributes are: background color, foreground color, blink state, underline state, and link.
+ *	Free to any use, cross-platform (to test) / cross-browser old style 437 code page monospaced bios font is provided also)
+ * Requirements: 437.js, crt.css, [font]
+ * Tested on: IE8, FF28, Chrome44 (more tests are appreciated).
+ * Anyone wants to help to develop this project is welcome!
+ * 
+ * @date 31-08-2015
+ * @license Copyright(C) 2015, Francesco Iafulli <fiaful@hotmail.com>
+ * 			Permission to use, copy, modify, and/or distribute this software for any
+ * 			purpose with or without fee is hereby granted, provided that the above
+ * 			copyright notice and this permission notice appear in all copies.
+ * 			THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * 			WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * 			MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * 			ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * 			WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * 			ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * 			OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ * @author fiaful (fiaful@hotmail.com)
+ * @version 0.9
+ */
+
+ /** 
+ * color palette index:
+ *  0 -> Black
+ *  1 -> Navy
+ *  2 -> Green
+ *  3 -> Cyan
+ *  4 -> Red
+ *  5 -> Purple
+ *  6 -> Brown
+ *  7 -> Silver
+ *  8 -> Grey
+ *  9 -> Blue
+ * 10 -> Lime
+ * 11 -> Aqua
+ * 12 -> Pink
+ * 13 -> Fuchsia
+ * 14 -> Yellow
+ * 15 -> White
+ */
+ 
+ // returns HTML object by Id (cross-browser)
+function $o(id)
+
+// remove and destroy HTML object by Id (cross-browser)
+function $r(id) 
+
+// convert int to character
+function $c(c)
+
+// character attribute object
+function CRTAttr()
+
+	// properties
+
+	c 				// default char (is used, for example, by fill routine to specify filler char)
+	fg 				// foreground color
+	bg 				// background color
+	blink  			// blink state
+	underline  		// underline state
+	href 			// link href
+	
+	// methods
+	
+	// copy method: copy all <attr> attributes to current object
+	copy = function(attr)
+
+// character map object (can contain screen portion or can be used as backbuffer)
+function CRTMap(cols, rows)
+
+// CRT main object
+// <id> is id of main DIV container
+// <cols> number of screen cols (x)
+// <rows> number of screen rows (y)
+function CRT(id, cols, rows)
+
+	// consts
+	
+	// frame border char array as [<left edge>, <top edge>, <right edge>, <bottom edge>, <top left corner>, <top right corner>, <bottom left corner>, <bottom right corner>]
+	DOUBLE_FRAME
+	SINGLE_FRAME
+	MIXED_FRAME			// left and top borders are single, right and bottom borders are double
+	SIMPLE_FRAME
+
+	BLACK 				// palette index for black color
+	NAVY 				// palette index for navy (dark blue) color
+	GREEN 				// palette index for green color
+	CYAN 				// palette index for cyan color
+	RED 				// palette index for red color
+	PURPLE 				// palette index for purple color
+	BROWN 				// palette index for brown color
+	SILVER 				// palette index for silver (dark white) color
+	GREY 				// palette index for grey (black light) color
+	BLUE 				// palette index for blue color
+	LIME 				// palette index for lime (green light) color
+	AQUA 				// palette index for aqua (cyan light) color
+	PINK 				// palette index for pink (red light) color
+	FUCHSIA 			// palette index for fuchsia (purple light) color
+	YELLOW 				// palette index for yellow color
+	WHITE 				// palette index for white color	
+
+	// properties
+	
+	oCRT 				// main DIV container object
+	cols				// display cols number
+	rows				// display rows number
+	buffer				// all display [<rows>][<cols>] characters
+	modified			// row modified flag (if modified[y] == true -> redraw row)
+	texts				// row SPANs text length (because IE innerText collapse spaces). Is used to calculate character position in row)
+	attr				// default attributes
+	attr.fg				// default foreground color
+	attr.bg				// default background color
+	x					// current cursor position (x)
+	y					// current cursor position (y)
+	cw					// char width (in pixel) - for blinking cursor draw
+	ch					// char height (in pixel) - for blinking cursor draw
+	sw					// screen width in pixel - for blinking cursor draw
+	sh					// screen height in pixel - for blinking cursor draw
+	wndLeft				// current window (viewport) left coordinate
+	wndTop				// current window (viewport) top coordinate
+	wndCols				// current window (viewport) width (in character)
+	wndRows				// current window (viewport) height (in character)
+	autoscroll			// if cursor is located to window bottom right corner and I ask to write anything, screen scroll up by 1 row if autoscroll is true. Nothing happens if autoscroll is false.
+	cursorshowstate		// if true -> blinking cursor is displayed; else not
+	blinkstate			// flag to draw or not blinking elements
+	stopwrite			// if true -> no chars are drawn
+	freeze 				// if true -> refresh method not redraw screen
+	
+	// methods
+	
+	// returns string representation of color palette index
+	colorName = function(index)	
+	
+	// Calculates the actual size of the screen and the actual size of a single character. 
+	// The size will be available only after the first call to refresh
+	getScreenSize = function()	
+
+	// provides cursor and characters blinking
+	blinkCursor = function()
+
+	// puts a single character in screen buffer and move cursor
+	// <char> is int value of char to draw
+	// <binary> is flag. If true control chars are drawn; if false control chars are activated (default value = false)
+	// <overrideAttrs> is flag. If true, char attributes are overwritten with default attributes; if false, char attributes are left unchanged (default value = true).
+	rawWriteChar = function(char, binary, overrideAttrs)
+
+	// write a string into screen buffer usign rawWriteChar
+	// <text> is the string to draw
+	// <binary> is flag. If true control chars are drawn; if false control chars are activated (default value = false)
+	// <overrideAttrs> is flag. If true, char attributes are overwritten with default attributes; if false, char attributes are left unchanged (default value = true).
+	write = function(text, binary, overrideAttrs)
+
+	// returns true if at least one character in the row have blink flag set to true; false otherwise
+	// <y> is row number to test
+	blinkRow = function(y)
+
+	// draw a row if needs. The current row is replaced
+	// <y> is row number to draw	
+	rowRender = function(y)
+
+	// resize screen to last non empty row
+	autoHeight = function()
+
+	// redraw the entire screen
+	refresh = function()
+		
+	// set current foreground color
+	// <color> is palette index (see color table at top)
+	setColor = function(color)
+
+	// set current background color
+	// <color> is palette index (see color table at top)
+	setBackgroundColor = function(color)
+
+	// set current blink state
+	// <state> is flag. True -> all I write from now have to blink; False otherwise
+	setBlink = function(state)
+
+	// set current underline state
+	// <state> is flag. True -> all I write from now have to be underlined; False otherwise
+	setUnderline = function(state)
+
+	// set current link href
+	// <href> is string. Url of link. if <href> == '' -> no link
+	setLink = function(href)
+
+	// returns current foreground color index (see color table at top)
+	getColor = function()
+
+	// returns current background color index (see color table at top)
+	getBackgroundColor = function()
+
+	// returns current blink state (as boolean flag)
+	getBlink = function()
+
+	// returns current underline state (as boolean flag)
+	getUnderline = function()
+
+	// returns current url of link (as string)
+	getLink = function()
+
+	// change cursor position in current window
+	// coordinates are 0-based and referred to current window
+	// coordinates are in characters (not in pixel)
+	gotoXY = function(x, y)
+
+	// force to redraw all window rows
+	// note: cols out of window will be redrawn also, for each window row
+	invalidate = function()
+
+	// returns current cursor x position (in characters)
+	getX = function()
+
+	// returns current cursor y position (in characters)
+	getY = function()
+
+	// provide a different way to move cursor
+	// <direction> can be:
+	//		cardinals: n, s, e, w, ne, nw, se, sw
+	//		auto: cursor is moved to next window cell. 
+	//				if end of window row is reached, cursor moved to the start of next window row. 
+	//				if end of window is reached, cursor moved to the start of last window row and window scrolls up.
+	//		back: cursor is moved to previuos window cell.
+	//				if start of window row is reached, cursor moved to the end of previous window row.
+	//				if top left window corner is reached, cursor don't move.
+	//		cr (carriage return): cursor is moved at start of window row.
+	//		lf (line feed): cursor is moved at next window row, same col.
+	//				if last row is reached, window scrolls up.
+	//		home: cursor is moved at top left window corner.
+	//		eol (end of line): cursor is moved at the end of current window row.
+	//		end: cursor is moved at bottom right window corner.
+	// <distance> (for cardinals only): indicates how many cells cursor have to move in direction
+	// note: window scrolls up if autoscroll property is true only. otherwise nothing happens (cursor move only).
+	moveCursor = function(direction, distance)
+
+	// cursor have to be shown
+	showCursor = function()
+
+	// cursor have to be hide
+	hideCursor = function()
+
+	// reset current window to screen size
+	// like call window w/out params
+	resetWindow = function()
+
+	// define new current window (viewport)
+	// out of window will be inalterated
+	// <left> and <top> indicates top left corner of window in screen coordinate system (in characters, 0-based)
+	// <cols> and <rows> indicates window size (width and height respectively - in characters)
+	// <autoscroll> defines if window have to scroll automatically if needed (default true) or not
+	window = function(left, top, cols, rows, autoscroll)
+
+	// fills current window with specified filler char
+	// <ch> is filler char
+	fill = function(ch)
+
+	// scrolls window in specified direction
+	// <direction> can be: up (default), down, left, right
+	// scroll is always of 1 unit (in characters)
+	scroll = function(direction)
+
+	// delete all chars in current cursor window row and scrolls up the bottom part
+	delLine = function()
+
+	// insert new row at current window row and scrolls down the bottom part
+	insLine = function()
+		
+	// delete all chars from cursor position to end of window row
+	clrEol = function()
+
+	// returns cell attributes (CRTAttr object) of cell at absolute <x> and <y> coordinates (in characters - not windowed)
+	getAttrAtXY = function(x, y)
+
+	// overwrite cell attributes (CRTAttr object) of cell at absolute <x> and <y> coordinates (in characters - not windowed).
+	// char in cell is preserved (change attributes only)
+	setAttrAtXY = function(x, y, attr)
+		
+	// returns SPAN element that contains char at <x> and <y> coordinates (in characters)
+	getObjectAtXY = function(x, y)
+		
+	// clear entire window and move cursor to top left window corner
+	clrScr = function()
+
+	// clear window content from cursor position to end of row and below
+	erase = function()
+		
+	// returns the bounds of a rectangle given by the intersection of the rectangle passed as parameters and the current window
+	// returns as array: [<left>, <top>, <cols>, <rows>]
+	intersect = function(left, top, cols, rows)
+
+	// draw a rectengle in current window, with default attributes.
+	// <left>, <top>, <cols> and <rows> are rectangle bounds.
+	// if <filler> is specified, the rectangle is filled with <filler> char.
+	// if <filler> is set to -1, only attributes are changed.
+	rect = function(left, top, cols, rows, filler)
+
+	// overwrite cell attributes (CRTAttr object) of cell at absolute <x> and <y> coordinates (in characters) if <x> and <y> falls in current window only.
+	// char in cell is NOT preserved (change attributes and char)
+	safeSetbuffer = function(y, x, attr)
+
+	// draw a frame on screen.
+	// <left>, <top>, <cols> and <rows> are frame bounds and are absolute screen related.
+	// <chars> is char array containing edge and corner chars
+	// <colors> is optional foregrounds array for [left, top, right, bottom] edge and corner
+	//		examples of chars:
+	//			this.DOUBLE_FRAME = [$c(186), $c(205), $c(186), $c(205), $c(201), $c(187), $c(200), $c(188)];
+	//			this.SINGLE_FRAME = [$c(179), $c(196), $c(179), $c(196), $c(218), $c(191), $c(192), $c(217)];
+	//			this.MIXED_FRAME = [$c(179), $c(196), $c(186), $c(205), $c(218), $c(183), $c(212), $c(188)];	// left and top borders are single, right and bottom borders are double
+	//			this.SIMPLE_FRAME = ['|', '-', '|', '-', '+', '+', '+', '+'];
+	frame = function(left, top, cols, rows, chars, colors)
+
+	// returns true if absolute <x> and <y> screen coordinates (in characters) falls in current window. False otherwise.
+	isValidXY = function(x, y)
+
+	// copy screen zone (chars and attributes) in memory (like a bitmap) and returns the map
+	// <left>, <top>, <cols> and <rows> are zone bounds
+	getMap = function(left, top, cols, rows)
+
+	// copy <map> content (chars and attributes) on screen at <left> and <top> coordinates (screen absolute and in characters)
+	putMap = function(left, top, map)
+
+	// play a beep (aka bell char)
+	// play a file called beep.mp3... you can overwrite this file with your favourite bell sound.
+	beep = function()
+
+	// draw a 16x16 char table for display full ASCII Table (with default attributes) at <left> and <top> coordinates
+	ASCIITable = function(left, top)
+
+	// draw a ruler at <left> and <top> position (screen absolute), of <cols> width.
+	// <units> char indicates which char to use for units (default = '-')
+	// <tens> char indicates which char to use for tens (default = '!')
+	ruler = function(left, top, cols, units, tens)
+	

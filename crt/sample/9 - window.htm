@@ -1,0 +1,64 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+
+	<button onclick="btnWindow1()">Create window 1</button>
+	<button onclick="btnWindow2()">Create window 2</button>
+	<button onclick="btnWindow3()">Create window 3</button>
+
+	<button onclick="btnReset()">Reset main window</button>
+	
+	<button onclick="btnHelloWorld()">Write Hello World!</button>
+
+	<script>
+		var crt = new CRT('crt', 80, 25);
+
+		btnWindow1 = function()
+			{
+				crt.window(5, 5, 10, 7);					// create window with specified bounds
+				crt.setBackgroundColor(crt.NAVY);		// I want new window have dark blue background color
+				crt.setColor(crt.WHITE);				// I want new window have white foreground color
+				crt.clrScr();							// clrScr apply my attribues to window
+				crt.refresh();							// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnWindow2 = function()
+			{
+				crt.window(20, 7, 50, 9);				// create window with specified bounds
+				crt.setBackgroundColor(crt.GREEN);	// I want new window have green background color
+				crt.setColor(crt.YELLOW);				// I want new window have yellow foreground color
+				crt.clrScr();							// clrScr apply my attribues to window
+				crt.refresh();							// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnWindow3 = function()
+			{
+				crt.window(30, 3, 20, 15);				// create window with specified bounds
+				crt.setBackgroundColor(crt.PURPLE);	// I want new window have purple background color
+				crt.setColor(crt.FUCHSIA);			// I want new window have fuchsia foreground color
+				crt.clrScr();							// clrScr apply my attribues to window
+				crt.refresh();							// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnReset = function()
+			{
+				crt.resetWindow();						// create window with specified bounds
+				crt.setBackgroundColor(crt.BLACK);	// restore to black background
+				crt.setColor(crt.SILVER);				// restore to silver foreground
+				crt.refresh();							// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+			
+		btnHelloWorld = function()
+			{
+				crt.write ('Hello World! ');		// write 'Hello World! ' string at cursor position and move cursor
+				crt.refresh();					// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+	</script>
+</body>
+</html>

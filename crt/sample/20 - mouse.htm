@@ -1,0 +1,60 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/mouse.js"></script>	
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+
+	<script>
+		function onClick(event)
+			{
+				crt.gotoXY(0, 0);
+				crt.write('onClick = button = ' + event.button + ', x = ' + event.x + ', y = ' + event.y + '     \n\r');
+				crt.refresh();
+			}
+	
+		function onWheel(event)
+			{
+				crt.gotoXY(0, 1);
+				crt.write('onWheel = dir = ' + event.wheel + '     \n\r');
+				crt.refresh();
+			}
+
+		function onDown(event)
+			{
+				crt.gotoXY(0, 2);
+				crt.write('onDown = x = ' + event.x + ', y = ' + event.y + ', button = ' + event.button + '     \n\r');
+				crt.refresh();
+			}
+
+		function onUp(event)
+			{
+				crt.gotoXY(0, 3);
+				crt.write('onUp = x = ' + event.x + ', y = ' + event.y + ', button = ' + event.button + '     \n\r');
+				crt.refresh();
+			}
+
+		function onMove(event)
+			{
+				crt.gotoXY(0, 4);
+				crt.write('onMove = x = ' + event.x + ', y = ' + event.y + ', button = ' + event.button + '     \n\r');
+				crt.refresh();
+			}
+			
+		var crt = new CRT('crt', 80, 25);		
+		var mouse = new CRTMouse(crt);
+		
+		mouse.on('click', onClick);
+		mouse.on('wheel', onWheel);
+		mouse.on('down', onDown);
+		mouse.on('up', onUp);
+		mouse.on('move', onMove);
+		
+	</script>
+</body>
+</html>

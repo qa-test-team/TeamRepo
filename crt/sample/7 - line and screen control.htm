@@ -1,0 +1,83 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+	
+	<button onclick="btnUp()">Move cursor up</button>
+	<button onclick="btnDown()">Move cursor down</button>
+	<button onclick="btnLeft()">Move cursor left</button>
+	<button onclick="btnRight()">Move cursor right</button>
+	
+	<button onclick="btnFill()">Fill</button>
+	<button onclick="btnInsLine()">Insert line</button>
+	<button onclick="btnDelLine()">Delete line</button>
+	<button onclick="btnClrEol()">Clear to end-of-line</button>
+	<button onclick="btnErase()">Clear to end-of-screen</button>
+	<button onclick="btnClrScr()">Clear screen</button>
+
+	<script>
+		var crt = new CRT('crt', 80, 25);
+
+		btnUp = function()
+			{
+				crt.moveCursor('n');				// move cursor to north/up
+			}
+
+		btnDown = function()
+			{
+				crt.moveCursor('s');				// move cursor to south/down
+			}
+
+		btnLeft = function()
+			{
+				crt.moveCursor('w');				// move cursor to west/left
+			}
+
+		btnRight = function()
+			{
+				crt.moveCursor('e');				// move cursor to east/right
+			}
+			
+		btnFill = function()
+			{
+				crt.fill('@');											// fill screen with char
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnInsLine = function()
+			{
+				crt.insLine();											// insert new line at cursor position
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnDelLine = function()
+			{
+				crt.delLine();											// delete line at cursor position
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnClrEol = function()
+			{
+				crt.clrEol();											// delete line from cursor position to end-of-line
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnErase = function()
+			{
+				crt.erase();												// delete chars from cursor position to end-of-screen
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnClrScr = function()
+			{
+				crt.clrScr();											// clear entire screen and move cursor to screen top left corner
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+	</script>
+</body>
+</html>

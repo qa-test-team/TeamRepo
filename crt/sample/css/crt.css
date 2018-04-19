@@ -1,0 +1,75 @@
+@font-face {
+font-family: 'clacon';
+src: url('font/clacon.eot');
+src: url('font/clacon.eot?#iefix') format('embedded-opentype'),
+     url('font/clacon.woff') format('woff'),
+     url('font/clacon.ttf') format('truetype'),
+     url('font/clacon.svg#ClassicConsole') format('svg');
+font-weight: normal;
+font-style: normal;
+-webkit-font-smoothing:aliased;
+font-smooth:never;
+}
+
+.crt
+{
+	font-family: 'clacon';
+	/* font-size: 32px; */
+	font-size: 32px;
+	/* position:relative; */
+}
+
+.crt DIV.cursor
+{
+	position:absolute;
+	height:4px;		/* l'altezza deve essere 1/6 dell'altezza di .crt DIV */
+	display:none;
+}
+
+.crt DIV
+{
+	display: block;
+	/* height: 24px; */ /* l'altezza deve essere esattamente 3/4 del font-size */
+	height: 24px;
+	/* width: 100%; */
+	/* background-color:#000; */
+	white-space:pre;
+	text-align:center;
+}
+
+.crt DIV SPAN.underline, .crt DIV SPAN.underline A { text-decoration: underline !important; }
+.crt DIV SPAN A { text-decoration: none; }
+
+.crt DIV SPAN.fg0, .crt DIV SPAN.fg0 A { color: #000000; } /* Black */
+.crt DIV SPAN.fg1, .crt DIV SPAN.fg1 A { color: #0000aa; } /* Navy */
+.crt DIV SPAN.fg2, .crt DIV SPAN.fg2 A { color: #00aa00; } /* Green */
+.crt DIV SPAN.fg3, .crt DIV SPAN.fg3 A { color: #00aaaa; } /* Cyan */
+.crt DIV SPAN.fg4, .crt DIV SPAN.fg4 A { color: #aa0000; } /* Red */
+.crt DIV SPAN.fg5, .crt DIV SPAN.fg5 A { color: #aa00aa; } /* Purple */
+.crt DIV SPAN.fg6, .crt DIV SPAN.fg6 A { color: #aa5500; } /* Brown */
+.crt DIV SPAN.fg7, .crt DIV SPAN.fg7 A { color: #aaaaaa; } /* Silver */
+.crt DIV SPAN.fg8, .crt DIV SPAN.fg8 A { color: #555555; } /* Gray */
+.crt DIV SPAN.fg9, .crt DIV SPAN.fg9 A { color: #5555ff; } /* Blue */
+.crt DIV SPAN.fg10, .crt DIV SPAN.fg10 A { color: #55ff55; } /* Lime */
+.crt DIV SPAN.fg11, .crt DIV SPAN.fg11 A { color: #55ffff; } /* Aqua */
+.crt DIV SPAN.fg12, .crt DIV SPAN.fg12 A { color: #ff5555; } /* Pink */
+.crt DIV SPAN.fg13, .crt DIV SPAN.fg13 A { color: #ff55ff; } /* Fuchsia */
+.crt DIV SPAN.fg14, .crt DIV SPAN.fg14 A { color: #ffff55; } /* Yellow */
+.crt DIV SPAN.fg15, .crt DIV SPAN.fg15 A { color: #ffffff; } /* White */
+
+.crt DIV SPAN.bg0, .crt DIV SPAN.bg0 A, .crt DIV.cur0 { background-color: #000000; } /* Black */
+.crt DIV SPAN.bg1, .crt DIV SPAN.bg1 A, .crt DIV.cur1 { background-color: #0000aa; } /* Navy */
+.crt DIV SPAN.bg2, .crt DIV SPAN.bg2 A, .crt DIV.cur2 { background-color: #00aa00; } /* Green */
+.crt DIV SPAN.bg3, .crt DIV SPAN.bg3 A, .crt DIV.cur3 { background-color: #00aaaa; } /* Cyan */
+.crt DIV SPAN.bg4, .crt DIV SPAN.bg4 A, .crt DIV.cur4 { background-color: #aa0000; } /* Red */
+.crt DIV SPAN.bg5, .crt DIV SPAN.bg5 A, .crt DIV.cur5 { background-color: #aa00aa; } /* Purple */
+.crt DIV SPAN.bg6, .crt DIV SPAN.bg6 A, .crt DIV.cur6 { background-color: #aa5500; } /* Brown */
+.crt DIV SPAN.bg7, .crt DIV SPAN.bg7 A, .crt DIV.cur7 { background-color: #aaaaaa; } /* Silver */
+.crt DIV SPAN.bg8, .crt DIV SPAN.bg8 A, .crt DIV.cur8 { background-color: #555555; } /* Gray */
+.crt DIV SPAN.bg9, .crt DIV SPAN.bg9 A, .crt DIV.cur9 { background-color: #5555ff; } /* Blue */
+.crt DIV SPAN.bg10, .crt DIV SPAN.bg10 A, .crt DIV.cur10 { background-color: #55ff55; } /* Lime */
+.crt DIV SPAN.bg11, .crt DIV SPAN.bg11 A, .crt DIV.cur11 { background-color: #55ffff; } /* Aqua */
+.crt DIV SPAN.bg12, .crt DIV SPAN.bg12 A, .crt DIV.cur12 { background-color: #ff5555; } /* Pink */
+.crt DIV SPAN.bg13, .crt DIV SPAN.bg13 A, .crt DIV.cur13 { background-color: #ff55ff; } /* Fuchsia */
+.crt DIV SPAN.bg14, .crt DIV SPAN.bg14 A, .crt DIV.cur14 { background-color: #ffff55; } /* Yellow */
+.crt DIV SPAN.bg15, .crt DIV SPAN.bg15 A, .crt DIV.cur15 { background-color: #ffffff; } /* White */

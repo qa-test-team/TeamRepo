@@ -1,0 +1,165 @@
+/**
+ * ansi.js
+ * 
+ * Based on crt.js, provides full featured ANSI text mode terminal in browser
+ *  see also (https://en.wikipedia.org/wiki/ANSI_escape_code)
+ * 	ANS and ASCII Art are supplied.
+ *	write method allows to use ANSI sequences directly.
+ *  JQuery is required for loading ANS file from server only.
+ * Requirements: crt.js, 437.js, crt.css, [font], <jquery 1.x>
+ * Tested on: IE8, FF28, Chrome44 (more tests are appreciated).
+ * Anyone wants to help to develop this project is welcome!
+ * 
+ * @date 31-08-2015
+ * @license Copyright(C) 2015, Francesco Iafulli <fiaful@hotmail.com>
+ * 			Permission to use, copy, modify, and/or distribute this software for any
+ * 			purpose with or without fee is hereby granted, provided that the above
+ * 			copyright notice and this permission notice appear in all copies.
+ * 			THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * 			WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * 			MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * 			ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * 			WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * 			ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * 			OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ * @author fiaful (fiaful@hotmail.com)
+ * @version 0.9
+ */
+
+// ANSI main object
+// <oCRT> is CRT object instance
+function ANSI (oCRT)
+
+	// properties
+
+	CRT								// internal CRT object
+	buffer							// ANSI buffer
+	curX							// saved x cursor position
+	curY							// saved y cursor position
+	curFG							// current foreground color palette index
+	curBG							// current background color palette index
+	hiColor							// color mode: true -> High mode; false (default) -> Low mode
+	reverse							// true -> invert fg and bg; false (default) -> fg and bg are not inverted
+	invisible						// true -> fg is set to bg; false (default) -> fg is user controlled
+	
+	ESC								// ANSI escape char
+	
+	// ANSI escape sequences enumeration
+	
+	// commands
+	BAW_TEXT
+	BAW_MOVE_CURSOR_TO
+	BAW_MOVE_CURSOR_REL
+	BAW_CURSOR_SAVE
+	BAW_CURSOR_RECALL
+	BAW_CLEAR_SCREEN
+	BAW_CLEAR_EOL
+	BAW_SET_COLOR
+	
+	// cursor movements
+	MOVE_UP
+	MOVE_DOWN
+	MOVE_LEFT
+	MOVE_RIGHT
+
+	// text attributes
+	TA_NORMAL
+	TA_BOLD
+	TA_UNDERLINE
+	TA_BLINK
+	TA_REVERSE
+	TA_INVISIBLE
+	
+	// foreground colors
+	FG_BLACK
+	FG_RED
+	FG_GREEN
+	FG_YELLOW
+	FG_BLUE
+	FG_MAGENTA
+	FG_CYAN
+	FG_WHITE
+
+	// background colors
+	BG_BLACK
+	BG_RED
+	BG_GREEN
+	BG_YELLOW
+	BG_BLUE
+	BG_MAGENTA
+	BG_CYAN
+	BG_WHITE
+	
+	// ANSI escape sequences templates		
+	ESC_MOVE_CURSOR_TO
+	ESC_MOVE_CURSOR_UP
+	ESC_MOVE_CURSOR_DOWN
+	ESC_MOVE_CURSOR_RIGHT
+	ESC_MOVE_CURSOR_LEFT
+	ESC_CURSOR_SAVE
+	ESC_CURSOR_RECALL
+	ESC_CLEAR_SCREEN
+	ESC_CLEAR_EOL
+	ESC_SET_COLOR1
+	ESC_SET_COLOR2
+	ESC_SET_COLOR3
+
+	// methods
+	
+	// create a new ANSI string buffer
+	// you can add your ANSI sequences here with bufferAppend method
+	bufferBegin = function()
+
+	// returns string representation of buffer
+	// you can pass this to write method to write buffer contents to screen	
+	bufferToString = function()
+
+	// replace parameters in ANSI sequence template
+	// <escSeq> is ANSI escape sequence template
+	// <param0> is the 1st escape sequence parameter (optional)
+	// <param1> is the 2nd escape sequence parameter (optional)
+	// <param2> is the 3rd escape sequence parameter (optional)
+	replaceInEscape = function(escSeq, param0, param1, param2)
+
+	// appends ANSI escape sequence to buffer
+	// <what> is ANSI escape sequence enum (see above)
+	// <param0> is the 1st escape sequence parameter (optional)
+	// <param1> is the 2nd escape sequence parameter (optional)
+	// <param2> is the 3rd escape sequence parameter (optional)
+	bufferAppend = function(what, param0, param1, param2)
+
+	// writes ANSI string to screen
+	// <text> can be simple text or any complex ANSI sequence (ANSI Art also)
+	write = function(text)
+
+	// current ANSI window contextualized gotoXY method
+	gotoXY = function (x, y)
+
+	// interprets the escape sequence according to ANSI specification
+	// if the sequence is recognized, run it and return "", otherwise return it as text
+	// <seq> is ANSI atomic sequence to run
+	runSequence = function(seq)
+		
+	// (requires JQuery loaded)
+	// draws ANSI art from url
+	// <arturl> have to point to ANS file
+	loadArt = function(arturl)
+		
+	// (requires JQuery loaded)
+	// draws ANSI art from url in window
+	// <x>, <y>, <width> and <height> defines art window
+	// <arturl> have to point to ANS file
+	// <restorexy> indicates if restore cursor position after draw (default = true)
+	// <restorewindow> indicates if restore current window after draw (default = true)
+	loadArtWindow = function(x, y, width, height, arturl, restorexy, restorewindow)
+		
+	// draws ANSI art from string
+	// <data> have to contain full ANS file content (ans2js.py tool can be used)
+	stringArt = function(data)
+		
+	// draws ANSI art from string in window
+	// <x>, <y>, <width> and <height> defines art window
+	// <data> have to contain full ANS file content (ans2js.py tool can be used)
+	// <restorexy> indicates if restore cursor position after draw (default = false)
+	// <restorewindow> indicates if restore current window after draw (default = false)
+	stringArtWindow = function(x, y, width, height, data, restorexy, restorewindow)

@@ -1,0 +1,75 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+	
+	<button onclick="btnUp()">Move cursor up</button>
+	<button onclick="btnDown()">Move cursor down</button>
+	<button onclick="btnLeft()">Move cursor left</button>
+	<button onclick="btnRight()">Move cursor right</button>
+	
+	<button onclick="btnGet()">get attributes at cursor position</button>
+	<button onclick="btnSet()">set attributes at cursor position</button>
+
+	<script>
+		var crt = new CRT('crt', 80, 25);
+		
+		for (var i = 0; i < 154; i++) 
+			{
+				crt.autoscroll = false;									// I want fill entire screen w/out scroll up
+				crt.setColor(Math.floor(Math.random() * 15) + 1);		// a random foreground color...
+				crt.write ('Hello ');
+				crt.setColor(Math.floor(Math.random() * 15) + 1);		// a random foreground color...
+				crt.write ('World! ');
+				crt.autoscroll = true;									// restore autoscroll
+			}
+		crt.gotoXY(10, 10);												// move cursor to position 10, 10
+
+		btnUp = function()
+			{
+				crt.moveCursor('n');				// move cursor to north/up
+			}
+
+		btnDown = function()
+			{
+				crt.moveCursor('s');				// move cursor to south/down
+			}
+
+		btnLeft = function()
+			{
+				crt.moveCursor('w');				// move cursor to west/left
+			}
+
+		btnRight = function()
+			{
+				crt.moveCursor('e');				// move cursor to east/right
+			}
+			
+		btnGet = function()
+			{
+				var attr = crt.getAttrAtXY (crt.getX(), crt.getY());		// get attributes at cursor position
+				// alert attributes in textual way (colorName is tool function that returns string representation of color palette index)
+				alert((attr.underline ? 'underlined ' : '') + (attr.blink ? 'blinking ' : '') + 'char (' + attr.c + ') in ' + crt.colorName(attr.fg) + ' on ' + crt.colorName(attr.bg))
+				crt.refresh();													// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnSet = function()
+			{
+				var attr = new CRTAttr();											// new attribute object
+				attr.fg = crt.AQUA;
+				attr.bg = crt.NAVY;
+				attr.underline = true;
+				attr.blink = true;
+				crt.setAttrAtXY (crt.getX(), crt.getY(), attr);			// set new attributes at cursor position
+				crt.moveCursor('auto');											// move cursor to next char (for sample purpose only... it's not needed)
+				crt.refresh();													// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+	</script>
+</body>
+</html>

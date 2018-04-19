@@ -1,0 +1,620 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+
+	<button onclick="step=100;btnClrScr()">Clear screen</button>
+	<button onclick="step=0;draw();">Draw by step!</button>
+	<button onclick="step=100;drawAll();">Draw all together!</button>
+	
+	<script>
+		var crt = new CRT('crt', 80, 25);
+
+		var step = 0;
+
+		btnClrScr = function()
+			{
+				crt.resetWindow();
+				crt.showCursor();
+				crt.setBackgroundColor(crt.BLACK);					// restore default screen attributes
+				crt.setColor(crt.SILVER);
+				crt.setBlink(false);
+				crt.setUnderline(false);
+				crt.setLink('');
+				crt.clrScr();											// clear entire screen and move cursor to screen top left corner
+				crt.refresh();											// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+		
+		// old style Turbo Vision screen simulation
+		
+		function draw()
+			{
+				switch(step)
+					{
+						case 0:
+							crt.resetWindow();
+							
+							// hide cursor
+							crt.hideCursor();
+							break;
+							
+						case 1:
+							// draw desktop
+							crt.setBackgroundColor(crt.NAVY);
+							crt.setColor(crt.SILVER);
+							crt.fill($c(176));
+							
+							crt.setBackgroundColor(crt.SILVER);
+							break;
+							
+						case 2:
+							// draw menu bar
+							crt.rect(0, 0, 80, 1, '');
+							break;
+							
+						case 3:
+							crt.setColor(crt.BLACK);
+							crt.write('  MCBase  Browse, edit & Add  Print  Editor  View handling            00:19:27');
+							break;
+							
+						case 4:
+							crt.setColor(crt.RED);
+							crt.gotoXY(2, 0);
+							crt.write('M');
+							crt.gotoXY(11, 0);
+							crt.write('r');
+							crt.gotoXY(30, 0);
+							crt.write('P');
+							crt.gotoXY(37, 0);
+							crt.write('E');
+							crt.gotoXY(50, 0);
+							crt.write('h');
+							break;
+							
+						case 5:					
+							// draw status bar
+							crt.rect(0, 24, 80, 1, '');
+							break;
+							
+						case 6:
+							crt.setColor(crt.BLACK);
+							crt.gotoXY(0, 24);
+							crt.write(' F10 = menu ' + $c(179) + ' Edit/add this producer record. Then Save and/or Quit it    930636');
+							break;
+							
+						case 7:
+							crt.setColor(crt.RED);
+							crt.gotoXY(1, 24);
+							crt.write('F10');
+							break;
+							
+						case 8:					
+							// draw bottom window
+							crt.setBackgroundColor(crt.NAVY);
+							crt.rect(1, 18, 79, 6);
+							break;
+							
+						case 9:
+							crt.setColor(crt.SILVER);
+							crt.frame(1, 18, 79, 6, crt.SINGLE_FRAME);
+							break;
+							
+						case 10:
+							crt.setColor(crt.YELLOW);
+							crt.window(2, 19, 76, 4);
+							crt.write('Multiple dialogs on the desktop at work...\r\nAll databases can be processed simultaniously.');
+							break;
+							
+						case 11:
+							crt.resetWindow();
+							crt.setColor(crt.SILVER);
+							crt.gotoXY(28, 18);
+							crt.write(' C:\\MCBASE\\DATA\\DEMO.TXT ');
+							break;
+							
+						case 12:
+							// draw windows shadow
+							crt.setBackgroundColor(crt.BLACK);
+							crt.rect(4, 8, 74, 11, -1);
+							break;
+							
+						case 13:
+							crt.rect(3, 5, 74, 11, -1);
+							break;
+							
+						case 14:
+							crt.rect(2, 2, 74, 11, -1);
+							break;
+							
+						case 15:
+							// draw windows
+							crt.setBackgroundColor(crt.SILVER);
+							crt.setColor(crt.BLACK);
+							crt.rect(0, 1, 74, 11, '');
+							break;
+							
+						case 16:
+							crt.frame(0, 1, 74, 11, crt.SINGLE_FRAME);
+							break;
+							
+						case 17:
+							crt.gotoXY(28, 1);
+							crt.write(' Edit/add an Album ');
+							break;
+							
+						case 18:
+							crt.rect(1, 4, 74, 11, '');
+							break;
+							
+						case 19:
+							crt.frame(1, 4, 74, 11, crt.SINGLE_FRAME);
+							break;
+							
+						case 20:
+							crt.gotoXY(29, 4);
+							crt.write(' Edit/add an Artist ');
+							break;
+							
+						case 21:
+							crt.rect(2, 7, 74, 11, '');
+							break;
+							
+						case 22:
+							crt.setColor(crt.WHITE);
+							crt.frame(2, 7, 74, 11, crt.DOUBLE_FRAME);
+							break;
+							
+						case 23:
+							crt.gotoXY(29, 7);
+							crt.write(' Edit/add a Producer ');
+							break;
+							
+						case 24:
+							// draw window icon
+							crt.gotoXY(4, 7);
+							crt.write('[ ]');
+							crt.setColor(crt.LIME);
+							crt.gotoXY(5, 7);
+							crt.write($c(254));
+							break;
+							
+						case 25:
+							// draw windows content
+							crt.gotoXY(3, 3);
+							crt.setColor(crt.BLACK);
+							crt.write('Album     ');
+							break;
+							
+						case 26:
+							crt.setColor(crt.WHITE);
+							crt.setBackgroundColor(crt.NAVY);
+							crt.write(' Radio-activity                                     ');
+							break;
+							
+						case 27:
+							crt.gotoXY(5, 3);
+							crt.setBackgroundColor(crt.SILVER);
+							crt.setColor(crt.YELLOW);
+							crt.write('b');
+							break;
+							
+						case 28:
+							crt.gotoXY(4, 6);
+							crt.setColor(crt.BLACK);
+							crt.write('Artist     ');
+							break;
+							
+						case 29:
+							crt.setColor(crt.WHITE);
+							crt.setBackgroundColor(crt.NAVY);
+							crt.write(' Kraftwerk                                          ');
+							break;
+							
+						case 30:
+							crt.gotoXY(5, 6);
+							crt.setBackgroundColor(crt.SILVER);
+							crt.setColor(crt.YELLOW);
+							crt.write('r');
+							break;
+							
+						case 31:
+							crt.gotoXY(5, 9);
+							crt.setColor(crt.BLACK);
+							crt.write('Producer  ');
+							break;
+							
+						case 32:
+							crt.setColor(crt.WHITE);
+							crt.setBackgroundColor(crt.NAVY);
+							crt.write(' H' + $c(129) + 'tter, Ralf / Schneider, Florian                         ');
+							break;
+							
+						case 33:
+							crt.gotoXY(9, 9);
+							crt.setBackgroundColor(crt.SILVER);
+							crt.setColor(crt.YELLOW);
+							crt.write('u');
+							break;
+							
+						case 34:
+							crt.gotoXY(5, 10);
+							crt.setColor(crt.BLACK);
+							crt.write('Period    ');
+							break;
+							
+						case 35:
+							crt.setColor(crt.WHITE);
+							crt.setBackgroundColor(crt.NAVY);
+							crt.write('                          ');
+							break;
+							
+						case 36:
+							crt.gotoXY(6, 10);
+							crt.setBackgroundColor(crt.SILVER);
+							crt.setColor(crt.YELLOW);
+							crt.write('e');
+							break;
+							
+						case 37:
+							// checkbox
+							crt.gotoXY(59, 11);
+							crt.setColor(crt.BLACK);
+							crt.setBackgroundColor(crt.CYAN);
+							crt.write(' [ ] Deleted ');
+							break;
+							
+						case 38:
+							crt.gotoXY(64, 11);
+							crt.setColor(crt.YELLOW);
+							crt.write('D');
+							break;
+							
+						case 39:
+							// buttons
+							crt.setColor(crt.BLACK);
+							crt.gotoXY(5, 13);
+							crt.setBackgroundColor(crt.GREEN);
+							crt.write('  Information memo  ');
+							break;
+							
+						case 40:
+							crt.setBackgroundColor(crt.SILVER);
+							crt.write('      ');
+							crt.setBackgroundColor(crt.GREEN);
+							crt.write(' Previous  ');
+							break;
+							
+						case 41:
+							crt.setBackgroundColor(crt.SILVER);
+							crt.write('    ');
+							crt.setBackgroundColor(crt.GREEN);
+							crt.write('   Next    ');
+							break;
+							
+						case 42:
+							crt.setBackgroundColor(crt.SILVER);
+							crt.write('    ');
+							crt.setBackgroundColor(crt.GREEN);
+							crt.write('  Select   ');
+							break;
+							
+						case 43:
+							crt.setBackgroundColor(crt.SILVER);
+							crt.gotoXY(25, 13);
+							crt.write($c(220));
+							crt.gotoXY(42, 13);
+							crt.write($c(220));
+							crt.gotoXY(57, 13);
+							crt.write($c(220));
+							crt.gotoXY(72, 13);
+							crt.write($c(220));
+							break;
+							
+						case 44:
+							crt.rect(6, 14, 20, 1, $c(223));
+							crt.rect(32, 14, 11, 1, $c(223));
+							crt.rect(47, 14, 11, 1, $c(223));
+							crt.rect(62, 14, 11, 1, $c(223));
+							break;
+							
+						case 45:
+							crt.setColor(crt.BLACK);
+							crt.gotoXY(5, 15);
+							crt.setBackgroundColor(crt.GREEN);
+							crt.write('    Remarks memo    ');
+							break;
+							
+						case 46:
+							crt.setBackgroundColor(crt.SILVER);
+							crt.write('      ');
+							crt.setBackgroundColor(crt.GREEN);
+							crt.write('  Add new  ');
+							break;
+							
+						case 47:
+							crt.setBackgroundColor(crt.SILVER);
+							crt.write('    ');
+							crt.setBackgroundColor(crt.GREEN);
+							crt.write('   Save    ');
+							break;
+							
+						case 48:
+							crt.setBackgroundColor(crt.SILVER);
+							crt.write('    ');
+							crt.setBackgroundColor(crt.GREEN);
+							crt.setColor(crt.WHITE);
+							crt.write('   Quit    ');
+							crt.setColor(crt.BLACK);
+							break;
+							
+						case 49:
+							crt.setBackgroundColor(crt.SILVER);
+							crt.gotoXY(25, 15);
+							crt.write($c(220));
+							crt.gotoXY(42, 15);
+							crt.write($c(220));
+							crt.gotoXY(57, 15);
+							crt.write($c(220));
+							crt.gotoXY(72, 15);
+							crt.write($c(220));
+							break;
+							
+						case 50:
+							crt.rect(6, 16, 20, 1, $c(223));
+							crt.rect(32, 16, 11, 1, $c(223));
+							crt.rect(47, 16, 11, 1, $c(223));
+							crt.rect(62, 16, 11, 1, $c(223));
+							break;
+
+						case 51:
+							crt.setBackgroundColor(crt.GREEN);
+							crt.setColor(crt.YELLOW);
+							crt.gotoXY(9, 13);
+							crt.write('f');
+							crt.gotoXY(35, 13);
+							crt.write('v');
+							crt.gotoXY(49, 13);
+							crt.write('N');
+							crt.gotoXY(68, 13);
+							crt.write('t');
+							crt.gotoXY(14, 15);
+							crt.write('k');
+							crt.gotoXY(33, 15);
+							crt.write('A');
+							crt.gotoXY(49, 15);
+							crt.write('S');
+							crt.gotoXY(64, 15);
+							crt.write('Q');
+							break;
+							
+						case 52:					
+							// cursor
+							crt.gotoXY(49, 9);
+							crt.showCursor();
+							break;
+					}
+					
+				crt.refresh();
+				
+				if (step < 52) 
+					{
+						step++;
+						setTimeout(draw, 500);
+					}
+			}
+			
+		function drawAll()
+			{
+				crt.resetWindow();
+				
+				// hide cursor
+				crt.hideCursor();
+				// draw desktop
+				crt.setBackgroundColor(crt.NAVY);
+				crt.setColor(crt.SILVER);
+				crt.fill($c(176));
+				
+				crt.setBackgroundColor(crt.SILVER);
+				// draw menu bar
+				crt.rect(0, 0, 80, 1, '');
+				crt.setColor(crt.BLACK);
+				crt.write('  MCBase  Browse, edit & Add  Print  Editor  View handling            00:19:27');
+				crt.setColor(crt.RED);
+				crt.gotoXY(2, 0);
+				crt.write('M');
+				crt.gotoXY(11, 0);
+				crt.write('r');
+				crt.gotoXY(30, 0);
+				crt.write('P');
+				crt.gotoXY(37, 0);
+				crt.write('E');
+				crt.gotoXY(50, 0);
+				crt.write('h');
+				// draw status bar
+				crt.rect(0, 24, 80, 1, '');
+				crt.setColor(crt.BLACK);
+				crt.gotoXY(0, 24);
+				crt.write(' F10 = menu ' + $c(179) + ' Edit/add this producer record. Then Save and/or Quit it    930636');
+				crt.setColor(crt.RED);
+				crt.gotoXY(1, 24);
+				crt.write('F10');
+				// draw bottom window
+				crt.setBackgroundColor(crt.NAVY);
+				crt.rect(1, 18, 79, 6);
+				crt.setColor(crt.SILVER);
+				crt.frame(1, 18, 79, 6, crt.SINGLE_FRAME);
+				crt.setColor(crt.YELLOW);
+				crt.window(2, 19, 76, 4);
+				crt.write('Multiple dialogs on the desktop at work...\r\nAll databases can be processed simultaniously.');
+				crt.resetWindow();
+				crt.setColor(crt.SILVER);
+				crt.gotoXY(28, 18);
+				crt.write(' C:\\MCBASE\\DATA\\DEMO.TXT ');
+				// draw windows shadow
+				crt.setBackgroundColor(crt.BLACK);
+				crt.rect(4, 8, 74, 11, -1);
+				crt.rect(3, 5, 74, 11, -1);
+				crt.rect(2, 2, 74, 11, -1);
+				// draw windows
+				crt.setBackgroundColor(crt.SILVER);
+				crt.setColor(crt.BLACK);
+				crt.rect(0, 1, 74, 11, '');
+				crt.frame(0, 1, 74, 11, crt.SINGLE_FRAME);
+				crt.gotoXY(28, 1);
+				crt.write(' Edit/add an Album ');
+				crt.rect(1, 4, 74, 11, '');
+				crt.frame(1, 4, 74, 11, crt.SINGLE_FRAME);
+				crt.gotoXY(29, 4);
+				crt.write(' Edit/add an Artist ');
+				crt.rect(2, 7, 74, 11, '');
+				crt.setColor(crt.WHITE);
+				crt.frame(2, 7, 74, 11, crt.DOUBLE_FRAME);
+				crt.gotoXY(29, 7);
+				crt.write(' Edit/add a Producer ');
+				// draw window icon
+				crt.gotoXY(4, 7);
+				crt.write('[ ]');
+				crt.setColor(crt.LIME);
+				crt.gotoXY(5, 7);
+				crt.write($c(254));
+				// draw windows content
+				crt.gotoXY(3, 3);
+				crt.setColor(crt.BLACK);
+				crt.write('Album     ');
+				crt.setColor(crt.WHITE);
+				crt.setBackgroundColor(crt.NAVY);
+				crt.write(' Radio-activity                                     ');
+				crt.gotoXY(5, 3);
+				crt.setBackgroundColor(crt.SILVER);
+				crt.setColor(crt.YELLOW);
+				crt.write('b');
+				crt.gotoXY(4, 6);
+				crt.setColor(crt.BLACK);
+				crt.write('Artist     ');
+				crt.setColor(crt.WHITE);
+				crt.setBackgroundColor(crt.NAVY);
+				crt.write(' Kraftwerk                                          ');
+				crt.gotoXY(5, 6);
+				crt.setBackgroundColor(crt.SILVER);
+				crt.setColor(crt.YELLOW);
+				crt.write('r');
+				crt.gotoXY(5, 9);
+				crt.setColor(crt.BLACK);
+				crt.write('Producer  ');
+				crt.setColor(crt.WHITE);
+				crt.setBackgroundColor(crt.NAVY);
+				crt.write(' H' + $c(129) + 'tter, Ralf / Schneider, Florian                         ');
+				crt.gotoXY(9, 9);
+				crt.setBackgroundColor(crt.SILVER);
+				crt.setColor(crt.YELLOW);
+				crt.write('u');
+				crt.gotoXY(5, 10);
+				crt.setColor(crt.BLACK);
+				crt.write('Period    ');
+				crt.setColor(crt.WHITE);
+				crt.setBackgroundColor(crt.NAVY);
+				crt.write('                          ');
+				crt.gotoXY(6, 10);
+				crt.setBackgroundColor(crt.SILVER);
+				crt.setColor(crt.YELLOW);
+				crt.write('e');
+				// checkbox
+				crt.gotoXY(59, 11);
+				crt.setColor(crt.BLACK);
+				crt.setBackgroundColor(crt.CYAN);
+				crt.write(' [ ] Deleted ');
+				crt.gotoXY(64, 11);
+				crt.setColor(crt.YELLOW);
+				crt.write('D');
+				// buttons
+				crt.setColor(crt.BLACK);
+				crt.gotoXY(5, 13);
+				crt.setBackgroundColor(crt.GREEN);
+				crt.write('  Information memo  ');
+				crt.setBackgroundColor(crt.SILVER);
+				crt.write('      ');
+				crt.setBackgroundColor(crt.GREEN);
+				crt.write(' Previous  ');
+				crt.setBackgroundColor(crt.SILVER);
+				crt.write('    ');
+				crt.setBackgroundColor(crt.GREEN);
+				crt.write('   Next    ');
+				crt.setBackgroundColor(crt.SILVER);
+				crt.write('    ');
+				crt.setBackgroundColor(crt.GREEN);
+				crt.write('  Select   ');
+				crt.setBackgroundColor(crt.SILVER);
+				crt.gotoXY(25, 13);
+				crt.write($c(220));
+				crt.gotoXY(42, 13);
+				crt.write($c(220));
+				crt.gotoXY(57, 13);
+				crt.write($c(220));
+				crt.gotoXY(72, 13);
+				crt.write($c(220));
+				crt.rect(6, 14, 20, 1, $c(223));
+				crt.rect(32, 14, 11, 1, $c(223));
+				crt.rect(47, 14, 11, 1, $c(223));
+				crt.rect(62, 14, 11, 1, $c(223));
+				crt.setColor(crt.BLACK);
+				crt.gotoXY(5, 15);
+				crt.setBackgroundColor(crt.GREEN);
+				crt.write('    Remarks memo    ');
+				crt.setBackgroundColor(crt.SILVER);
+				crt.write('      ');
+				crt.setBackgroundColor(crt.GREEN);
+				crt.write('  Add new  ');
+				crt.setBackgroundColor(crt.SILVER);
+				crt.write('    ');
+				crt.setBackgroundColor(crt.GREEN);
+				crt.write('   Save    ');
+				crt.setBackgroundColor(crt.SILVER);
+				crt.write('    ');
+				crt.setBackgroundColor(crt.GREEN);
+				crt.setColor(crt.WHITE);
+				crt.write('   Quit    ');
+				crt.setColor(crt.BLACK);
+				crt.setBackgroundColor(crt.SILVER);
+				crt.gotoXY(25, 15);
+				crt.write($c(220));
+				crt.gotoXY(42, 15);
+				crt.write($c(220));
+				crt.gotoXY(57, 15);
+				crt.write($c(220));
+				crt.gotoXY(72, 15);
+				crt.write($c(220));
+				crt.rect(6, 16, 20, 1, $c(223));
+				crt.rect(32, 16, 11, 1, $c(223));
+				crt.rect(47, 16, 11, 1, $c(223));
+				crt.rect(62, 16, 11, 1, $c(223));
+				crt.setBackgroundColor(crt.GREEN);
+				crt.setColor(crt.YELLOW);
+				crt.gotoXY(9, 13);
+				crt.write('f');
+				crt.gotoXY(35, 13);
+				crt.write('v');
+				crt.gotoXY(49, 13);
+				crt.write('N');
+				crt.gotoXY(68, 13);
+				crt.write('t');
+				crt.gotoXY(14, 15);
+				crt.write('k');
+				crt.gotoXY(33, 15);
+				crt.write('A');
+				crt.gotoXY(49, 15);
+				crt.write('S');
+				crt.gotoXY(64, 15);
+				crt.write('Q');
+				// cursor
+				crt.gotoXY(49, 9);
+				crt.showCursor();
+			}
+			
+	</script>
+</body>
+</html>

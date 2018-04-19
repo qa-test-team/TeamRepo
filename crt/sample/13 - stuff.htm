@@ -1,0 +1,38 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+	
+	<button onclick="btnBeep()">Beep!</button>
+	<button onclick="btnASCII()">ASCII table</button>
+	<button onclick="btnRuler()">Ruler</button>
+
+	<script>
+		var crt = new CRT('crt', 80, 25);
+		
+		btnBeep = function()
+			{
+				crt.beep();						// play bell sound
+			}
+			
+		btnASCII = function()
+			{
+				crt.ASCIITable(34, 5);			// draw ASCII table in 16x16 characters grid
+				crt.refresh();					// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+
+		btnRuler = function()
+			{
+				crt.ruler(0, 0, 80);				// draw standard ruler
+				crt.ruler(5, 3, 70, '.', '*');	// draw custom ruler
+				crt.refresh();					// update screen immediately (otherwise screen updates automatically when cursor redraw itself and screen)
+			}
+			
+	</script>
+</body>
+</html>

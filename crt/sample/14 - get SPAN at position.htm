@@ -1,0 +1,60 @@
+<!DOCTYPE>
+<html>
+<head>
+	<script src="js/crt.js"></script>
+	<script src="js/437.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crt.css"/>
+</head>
+<body>
+	<div id="crt" class="crt"></div>
+	
+	<button onclick="btnUp()">Move cursor up</button>
+	<button onclick="btnDown()">Move cursor down</button>
+	<button onclick="btnLeft()">Move cursor left</button>
+	<button onclick="btnRight()">Move cursor right</button>
+	
+	<button onclick="btnSpan()">get SPAN at cursor position</button>
+
+	<script>
+		var crt = new CRT('crt', 80, 25);
+		
+		for (var i = 0; i < 154; i++) 
+			{
+				crt.autoscroll = false;									// I want fill entire screen w/out scroll up
+				crt.setColor(Math.floor(Math.random() * 15) + 1);		// a random foreground color...
+				crt.write ('Hello ');
+				crt.setColor(Math.floor(Math.random() * 15) + 1);		// a random foreground color...
+				crt.write ('World! ');
+				crt.autoscroll = true;									// restore autoscroll
+			}
+		crt.gotoXY(10, 10);												// move cursor to position 10, 10
+
+		btnUp = function()
+			{
+				crt.moveCursor('n');				// move cursor to north/up
+			}
+
+		btnDown = function()
+			{
+				crt.moveCursor('s');				// move cursor to south/down
+			}
+
+		btnLeft = function()
+			{
+				crt.moveCursor('w');				// move cursor to west/left
+			}
+
+		btnRight = function()
+			{
+				crt.moveCursor('e');				// move cursor to east/right
+			}
+			
+		btnSpan = function()
+			{
+				var span = crt.getObjectAtXY (crt.getX(), crt.getY());		// get span object at cursor position
+				alert(span + ' - html = ' + span.outerHTML + ' - container = ' + span.parentNode.outerHTML)
+			}
+
+	</script>
+</body>
+</html>

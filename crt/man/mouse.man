@@ -1,0 +1,104 @@
+/**
+ * mouse.js
+ * 
+ * Extends text mode CRT library with mouse support
+ *  click, wheel, down, up, and move are currently supported
+ * 	this library needs jquery to hook mouse events independently of the browser
+ *  it would be nice to be able not to use jquery for this purpose
+ * Requirements: crt.js, 437.js, crt.css, [font], JQuery 1.x
+ * Tested on: IE8, FF28, Chrome44 (more tests are appreciated).
+ * Anyone wants to help to develop this project is welcome!
+ * 
+ * @date 31-08-2015
+ * @license Copyright(C) 2015, Francesco Iafulli <fiaful@hotmail.com>
+ * 			Permission to use, copy, modify, and/or distribute this software for any
+ * 			purpose with or without fee is hereby granted, provided that the above
+ * 			copyright notice and this permission notice appear in all copies.
+ * 			THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * 			WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * 			MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * 			ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * 			WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * 			ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * 			OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ * @author fiaful (fiaful@hotmail.com)
+ * @version 0.9
+ */
+ 
+ // Mouse event object
+ function CRTMouseEvent()
+
+	// properties
+ 
+	event 				// original browser event
+	realx				// mouse current x coordinate (in pixel)
+	realy				// mouse current y coordinate (in pixel)
+	x					// mouse current x coordinate (in chars)
+	y					// mouse current y coordinate (in chars)
+	dx					// mouse click x coordinate (in chars)
+	dy					// mouse click y coordinate (in chars)
+	button 				// mouse button pressed
+	wheel 				// wheel direction
+
+// Mouse handler object
+// <oCRT> is CRT object insance
+function CRTMouse (oCRT)
+
+	// properties
+
+	CRT					// internal CRT object
+
+	clickEvent			// click handler routine
+	wheelEvent			// mouse wheel handler routine
+	downEvent			// mouse button down handler routine
+	upEvent				// mouse up handler routine
+	moveEvent			// mouse move handler routine
+	
+	lastx				// last mouse x position
+	lasty				// last mouse y position
+	
+	// mouse event name enumeration
+	EV_CLICK
+	EV_WHEEL
+	EV_DOWN
+	EV_UP
+	EV_MOVE
+	
+	// methods
+
+	// internally used
+	// creates an initialized mouse event
+	eventFactory = function(event, button, evtype)
+		
+	// internal click handler routine
+	// calls clickEvent(e) routine if defined
+	// if character cell contains url, link is actived in new window (after clickEvent routine)
+	rawClick = function(ev, button)
+
+	// internal mouse wheel handler routine
+	// calls wheelEvent(e) routine if defined
+	rawWheel = function(ev, button)
+
+	// internal mouse button down handler routine
+	// calls downEvent(e) routine if defined
+	rawDown = function(ev, button)
+
+	// internal mouse button up handler routine
+	// calls upEvent(e) routine if defined
+	// calls rawClick if mouse position is the same of mouse click position
+	rawUp = function(ev, button)
+
+	// internal mouse move handler routine
+	// calls moveEvent(e) routine if defined
+	rawMove = function(ev, button)
+
+	// attach mouse event handler routine
+	// <eventName> is event name enum
+	// <fnc> is function name
+	// exampe: oMouse.on(oMouse.EV_CLICK, onClick)
+	on = function(eventName, fnc)
+		
+	// detach mouse event handler routine
+	// <eventName> is event name enum
+	// exampe: oMouse.off(oMouse.EV_CLICK)
+	off = function(eventName)
